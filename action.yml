@@ -1,0 +1,30 @@
+name: 'AWS API GTW swagger deployer'
+description: 'Merge a swagger with extension from AWS API GTW with a standard swagger from a JAVA project'
+inputs:
+  target-env:
+    description: 'the env on which the API will be deployed'
+    required: true    
+  swagger-path:
+    description: 'the path of the swagger file'
+    required: true
+  api-name:
+    description: 'The name of the API. This is used as a key to do an upsert of the API on the API Gateway'
+    required: true      
+  api-domain-name:
+    description: 'The domain name of the API (i.e: api.example.com)'
+    required: false
+  api-base-path:
+    description: 'The base path of the apy (i.e: /dms-v1)'
+    required: false  
+  api-media-types:
+    description: 'The media-types of the apy (i.e: multipart/form-data)'
+    required: false  
+  aws-region:
+    description: 'The AWS region. Default: eu-west-1'
+    required: false               
+outputs:
+  swagger-merged-path: # id of output
+    description: 'the path of the swagger with extension'
+runs:
+  using: 'node12'
+  main: 'index.js'
