@@ -1,0 +1,4890 @@
+{
+  "basePath": "/",
+  "paths": {
+    "/billing/v1/accounting/creance": {
+      "post": {
+        "summary": "Excecute accounting template creance (3) ",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "accountingCreanceUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "allowEmptyValue": false,
+            "name": "month",
+            "format": "int32",
+            "x-example": 1,
+            "description": "Report date day",
+            "type": "integer",
+            "required": false
+          },
+          {
+            "in": "query",
+            "allowEmptyValue": false,
+            "name": "year",
+            "format": "int32",
+            "x-example": 2020,
+            "description": "Report date day",
+            "type": "integer",
+            "required": false
+          }
+        ],
+        "tags": [
+          "accounting-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/billing/v1/subscription/gocardless/mandate/token": {
+      "get": {
+        "summary": "Create a mandate token using gocardless DropIn page",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "createGocardlessMandateTokenUsingGET",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/CreateGocardlessMandateTokenReponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "subscription-resource"
+        ]
+      }
+    },
+    "/billing/v1/scheduler/stripe/fees": {
+      "post": {
+        "summary": "Handle stripe fee in accounting",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "stripeEventUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "scheduler-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/billing/v1/subscription": {
+      "post": {
+        "summary": "Create a subscription",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "createPublicSubscriptionUsingPOST",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/CreateSubscriptionResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/CreateSubscription"
+            },
+            "in": "body",
+            "name": "createSubscription",
+            "description": "createSubscription",
+            "required": true
+          }
+        ],
+        "tags": [
+          "subscription-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/scheduler/stripe/notify-expiring-cards": {
+      "post": {
+        "summary": "Send notification to all customer who have a card expiring in 1 month",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "notifyExpiringCardsUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "scheduler-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/subscriptions/{policyId}/renewals": {
+      "post": {
+        "summary": "Renew a new subscription",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "renewSubscriptionUsingPOST",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/RenewSubscriptionResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "policyId",
+            "description": "policyId",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/RenewSubscription"
+            },
+            "in": "body",
+            "name": "renewSubscription",
+            "description": "renewSubscription",
+            "required": true
+          }
+        ],
+        "tags": [
+          "subscription-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/billing/v1/subscription/validate/paymentMethod/callback/{id}": {
+      "post": {
+        "summary": "Approve payment in paypal",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "validatePaymentMethodCallbackUsingPOST",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ValidatePaymentMethodCallbackResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "subscription-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/accounting/prestations": {
+      "post": {
+        "summary": "Excecute accounting template presations (4) ",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "accountingPrestationsUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "allowEmptyValue": false,
+            "name": "month",
+            "format": "int32",
+            "x-example": 1,
+            "description": "Report date day",
+            "type": "integer",
+            "required": false
+          },
+          {
+            "in": "query",
+            "allowEmptyValue": false,
+            "name": "year",
+            "format": "int32",
+            "x-example": 2020,
+            "description": "Report date day",
+            "type": "integer",
+            "required": false
+          }
+        ],
+        "tags": [
+          "accounting-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/structured-communications": {
+      "post": {
+        "summary": "Generate a unique structured communication",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "generateStructuredCommunicationUsingPOST",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/StructuredCommunicationResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "payment-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/billing/v1/subscription/stripe/setupIntent": {
+      "get": {
+        "summary": "get setupIntent, the id provided by this api must be use with confirmCardSetup from Stripe.js in front end (clientSecret)",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "getSetupIntentUsingGET_1",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/GetSetupIntentResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "stripe-subscription-resource"
+        ]
+      }
+    },
+    "/billing/v1/payments": {
+      "post": {
+        "summary": "Initiate an outgoing payment",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "initiatePaymentUsingPOST",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/InitiatePaymentResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/InitiatePaymentRequest"
+            },
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true
+          }
+        ],
+        "tags": [
+          "payment-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/subscription/paypal/{subscriptionId}/policyNumber": {
+      "patch": {
+        "summary": "Create a stripe subscription",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "updatePolicyNumberUsingPATCH",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "subscriptionId",
+            "description": "subscriptionId",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/UpdatePaypalPolicyNumber"
+            },
+            "in": "body",
+            "name": "updatePolicyNumber",
+            "description": "updatePolicyNumber",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-correlationId",
+            "description": "x-correlationId",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "paypal-subscription-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/accounting/reserves": {
+      "post": {
+        "summary": "Generate a reserving report",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "initiateReportUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "allowEmptyValue": false,
+            "name": "month",
+            "format": "int32",
+            "x-example": 1,
+            "description": "Report date day",
+            "type": "integer",
+            "required": false
+          },
+          {
+            "in": "query",
+            "allowEmptyValue": false,
+            "name": "year",
+            "format": "int32",
+            "x-example": 2020,
+            "description": "Report date day",
+            "type": "integer",
+            "required": false
+          }
+        ],
+        "tags": [
+          "reserve-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/reminder/{policyId}/level2": {
+      "post": {
+        "summary": "Call reminder level 2 for a policy",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "initiateReminderLevel2UsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "policyId",
+            "description": "The policy id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/ReminderLevel2Request"
+            },
+            "in": "body",
+            "name": "reminderLevel2Request",
+            "description": "reminderLevel2Request",
+            "required": true
+          }
+        ],
+        "tags": [
+          "reminder-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/subscription": {
+      "post": {
+        "summary": "Create a subscription",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "createSubscriptionUsingPOST_2",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/CreateSubscriptionResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/CreateSubscription"
+            },
+            "in": "body",
+            "name": "createSubscription",
+            "description": "createSubscription",
+            "required": true
+          }
+        ],
+        "tags": [
+          "subscription-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/subscription/cancel": {
+      "post": {
+        "summary": "Create a stripe subscription",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "cancelSubscriptionUsingPOST",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/CancelSubscriptionResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/Cancel"
+            },
+            "in": "body",
+            "name": "cancel",
+            "description": "cancel",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-correlationId",
+            "description": "x-correlationId",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "subscription-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/reminder/{policyId}": {
+      "post": {
+        "summary": "Call reminder level for a policy",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "initiateReminderLevelUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "policyId",
+            "description": "The policy id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "reminderLevel",
+            "description": "reminderLevel",
+            "type": "string",
+            "required": true,
+            "enum": [
+              "Level0",
+              "Level1",
+              "Level2",
+              "Level3",
+              "Level4"
+            ]
+          }
+        ],
+        "tags": [
+          "reminder-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/claims/{claimId}/reserve": {
+      "put": {
+        "summary": "Create or a update a reserve related to a claim",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "initiatePaymentUsingPUT",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "claimId",
+            "description": "The claim id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/UpsertReserveRequest"
+            },
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true
+          }
+        ],
+        "tags": [
+          "reserve-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/scheduler/subscriptions/cancel": {
+      "post": {
+        "summary": "Handle stripe fee in accounting",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "cancelSubscriptionSchedulerUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "scheduler-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/subscription/stripe/card-refresh": {
+      "post": {
+        "summary": "call Stripe to retrieve the credit card number (last 4 digits) and stores it in Salesforce",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "refreshCardNumberUsingPOST",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/RefreshCardNumberResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "stripe-subscription-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/subscription/paypal": {
+      "post": {
+        "summary": "Create a stripe subscription",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "createSubscriptionUsingPOST",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/CreatePaypalSubscriptionResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/CreatePaypalSubscription"
+            },
+            "in": "body",
+            "name": "createSubscription",
+            "description": "createSubscription",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-correlationId",
+            "description": "x-correlationId",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "paypal-subscription-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/subscription/stripe/card/{paymentMethod}": {
+      "get": {
+        "summary": "get card using is id",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "getCardUsingGET",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/CardInfo"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "paymentMethod",
+            "description": "paymentMethod",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-correlationId",
+            "description": "x-correlationId",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "stripe-subscription-resource"
+        ]
+      }
+    },
+    "/billing/v1/subscriptions/{policyId}/switch": {
+      "post": {
+        "summary": "Switch to a new subscription",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "switchSubscriptionUsingPOST",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/SwitchSubscriptionResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "policyId",
+            "description": "policyId",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/SwitchSubscription"
+            },
+            "in": "body",
+            "name": "switchSubscription",
+            "description": "switchSubscription",
+            "required": true
+          }
+        ],
+        "tags": [
+          "subscription-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/subscription/stripe/card": {
+      "patch": {
+        "summary": "Update card for subscription linked to a policy",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "updateCardUsingPATCH",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/PatchStripePaymentMethodRequest"
+            },
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true
+          }
+        ],
+        "tags": [
+          "stripe-subscription-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/subscription/stripe": {
+      "post": {
+        "summary": "Create a stripe subscription",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "createSubscriptionUsingPOST_1",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/CreateStripeSubscriptionResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/CreateStripeSubscription"
+            },
+            "in": "body",
+            "name": "createSubscription",
+            "description": "createSubscription",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-correlationId",
+            "description": "x-correlationId",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "stripe-subscription-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/subscription/stripe/notify-expiring-cards": {
+      "post": {
+        "summary": "Send notification to all customer who have a card expiring in 1 month",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "notifyExpiringCardsUsingPOST_1",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "stripe-subscription-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/accounting/facturier": {
+      "post": {
+        "summary": "Excecute accounting template facurier (5) ",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "accountingFacturierUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "allowEmptyValue": false,
+            "name": "month",
+            "format": "int32",
+            "x-example": 1,
+            "description": "Report date day",
+            "type": "integer",
+            "required": false
+          },
+          {
+            "in": "query",
+            "allowEmptyValue": false,
+            "name": "year",
+            "format": "int32",
+            "x-example": 2020,
+            "description": "Report date day",
+            "type": "integer",
+            "required": false
+          }
+        ],
+        "tags": [
+          "accounting-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/billing/v1/reminder/payments/{policyId}": {
+      "get": {
+        "summary": "Generate a payment for unpaid subscription",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "initiatePaymentReminderUsingGET",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/PaymentReminderResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "policyId",
+            "description": "The user id (cognito id)",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "reminder-resource"
+        ]
+      }
+    },
+    "/billing/v1/subscription/changeEmail": {
+      "put": {
+        "summary": "updateCustomer",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "updateCustomerUsingPUT",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/ChangeEmail"
+            },
+            "in": "body",
+            "name": "changeEmail",
+            "description": "changeEmail",
+            "required": true
+          }
+        ],
+        "tags": [
+          "subscription-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/scheduler/accounting/balance": {
+      "post": {
+        "summary": "Handle stripe fee in accounting",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "initReportTemplateBalanceUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "scheduler-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/subscription/stripe/portal-links": {
+      "post": {
+        "summary": "Create a link so the mobile app can redirect the user to the Stripe portal to update his credit card number.\u003cbr/\u003eThis link is valid during a limited period of time",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "createStripePortalLinkUsingPOST",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/CreatePortalLinkResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "stripe-subscription-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/accounting/stripeFee": {
+      "post": {
+        "summary": "Excecute accounting template Stripe fee ",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "accountingStripeFeeUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "allowEmptyValue": false,
+            "name": "month",
+            "format": "int32",
+            "x-example": 1,
+            "description": "Report date day",
+            "type": "integer",
+            "required": false
+          },
+          {
+            "in": "query",
+            "allowEmptyValue": false,
+            "name": "year",
+            "format": "int32",
+            "x-example": 2020,
+            "description": "Report date day",
+            "type": "integer",
+            "required": false
+          }
+        ],
+        "tags": [
+          "accounting-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/scheduler/payments/reconcillation": {
+      "post": {
+        "summary": "Handle stripe fee in accounting",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "reconciliatePaymentsUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "scheduler-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/accounting/production": {
+      "post": {
+        "summary": "Excecute accounting template production (2) ",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "accountingProductionUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "allowEmptyValue": false,
+            "name": "month",
+            "format": "int32",
+            "x-example": 1,
+            "description": "Report date day",
+            "type": "integer",
+            "required": false
+          },
+          {
+            "in": "query",
+            "allowEmptyValue": false,
+            "name": "year",
+            "format": "int32",
+            "x-example": 2020,
+            "description": "Report date day",
+            "type": "integer",
+            "required": false
+          }
+        ],
+        "tags": [
+          "accounting-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/events/accounting": {
+      "post": {
+        "summary": "Create a new accounting event. These events are then processed once per month to build accounting reports",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "accountingEventUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/EventAccounting"
+            },
+            "in": "body",
+            "name": "event",
+            "description": "event",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "tags": [
+          "event-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/accounting/balance": {
+      "post": {
+        "summary": "Excecute accounting template Stripe fee ",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "accountingBalanceUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "accounting-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/accounting/accounting-entries": {
+      "post": {
+        "summary": "Excecute accounting template 1 ",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "accountingUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "allowEmptyValue": false,
+            "name": "day",
+            "format": "int32",
+            "x-example": 30,
+            "description": "Report date day",
+            "type": "integer",
+            "required": false
+          },
+          {
+            "in": "query",
+            "allowEmptyValue": false,
+            "name": "month",
+            "format": "int32",
+            "x-example": 1,
+            "description": "Report date day",
+            "type": "integer",
+            "required": false
+          },
+          {
+            "in": "query",
+            "allowEmptyValue": false,
+            "name": "year",
+            "format": "int32",
+            "x-example": 2020,
+            "description": "Report date day",
+            "type": "integer",
+            "required": false
+          }
+        ],
+        "tags": [
+          "accounting-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/payments/reconciliationFromS3": {
+      "post": {
+        "summary": "Excecute payment reconciliation from S3 file",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "paymentReconciliationFromS3UsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "allowEmptyValue": false,
+            "name": "filename",
+            "x-example": "file.xml",
+            "description": "filename",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "payment-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/billing/v1/health": {
+      "get": {
+        "summary": "Get the health of the service",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "publicHealthUsingGET",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Health"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "health-resource"
+        ]
+      }
+    },
+    "/public/billing/v1/subscription/validate/paymentMethod": {
+      "post": {
+        "summary": "Valide payment method in stripe or paypal",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "validatePaymentMethodUsingPOST",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ValidatePaymentMethodResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/ValidatePaymentMethod"
+            },
+            "in": "body",
+            "name": "validatePaymentMethod",
+            "description": "validatePaymentMethod",
+            "required": true
+          }
+        ],
+        "tags": [
+          "subscription-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/billing/v1/mollieSubscription": {
+      "post": {
+        "summary": "Create a mollie subscription",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "createMollieSubscriptionUsingPOST",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/CreateSubscriptionResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/CreateSubscription"
+            },
+            "in": "body",
+            "name": "createSubscription",
+            "description": "createSubscription",
+            "required": true
+          }
+        ],
+        "tags": [
+          "subscription-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/payments/reconciliation": {
+      "post": {
+        "summary": "Excecute payment reconciliation from S3 file",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "paymentReconciliationUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "payment-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/scheduler/reminders/level2": {
+      "post": {
+        "summary": "Handle reminder of level 2",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "reminderLevel2UsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "scheduler-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/scheduler/reminders/level1": {
+      "post": {
+        "summary": "Handle reminder of level 1",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "reminderLevel1UsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "scheduler-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/scheduler/reminders/level4": {
+      "post": {
+        "summary": "Handle reminder of level 4",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "reminderLevel4UsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "scheduler-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/subscription/stripe/setupIntent": {
+      "get": {
+        "summary": "get setupIntent, the id provided by this api must be use with confirmCardSetup from Stripe.js in front end (clientSecret)",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "getSetupIntentUsingGET",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/GetSetupIntentResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "paymentMethod",
+            "description": "paymentMethod",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "tags": [
+          "stripe-subscription-resource"
+        ]
+      }
+    },
+    "/billing/v1/scheduler/reminders/level3": {
+      "post": {
+        "summary": "Handle reminder of level 3",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "reminderLevel3UsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "scheduler-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/payments/resendToBelfius": {
+      "post": {
+        "summary": "Excecute payment reconciliation ",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "resendToBelfiusUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "allowEmptyValue": false,
+            "name": "filename",
+            "x-example": "file.xml",
+            "description": "filename",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "payment-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/subscription/gocardless/mandate": {
+      "post": {
+        "summary": "Create a mandate using gocardless hosted page",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "createGocardlessMandateUsingPOST",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/CreateGocardlessMandateReponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/CreateGocardlessMandate"
+            },
+            "in": "body",
+            "name": "createGocardlessMandate",
+            "description": "createGocardlessMandate",
+            "required": true
+          }
+        ],
+        "tags": [
+          "subscription-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/subscription/stripe/scheduleSubscription/{scheduleSubscriptionId}/policyNumber": {
+      "patch": {
+        "summary": "Create a stripe subscription",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "updatePolicyNumberUsingPATCH_1",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "scheduleSubscriptionId",
+            "description": "scheduleSubscriptionId",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/UpdateStripePolicyNumber"
+            },
+            "in": "body",
+            "name": "updatePolicyNumber",
+            "description": "updatePolicyNumber",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-correlationId",
+            "description": "x-correlationId",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "stripe-subscription-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/scheduler/accounting/stripe-fees": {
+      "post": {
+        "summary": "Handle accounting entries",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "stripeFeeReportUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "scheduler-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/scheduler/accounting/reserving/template1": {
+      "post": {
+        "summary": "Handle stripe fee in accounting",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "reservingTemplate1UsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "scheduler-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/scheduler/accounting/reserving/template2": {
+      "post": {
+        "summary": "Handle stripe fee in accounting",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "reservingTemplate2UsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "scheduler-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/accounting/reserving/production": {
+      "post": {
+        "summary": "Excecute accounting template reserving production",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "accountingReservingProductionUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "allowEmptyValue": false,
+            "name": "month",
+            "format": "int32",
+            "x-example": 1,
+            "description": "Report date day",
+            "type": "integer",
+            "required": false
+          },
+          {
+            "in": "query",
+            "allowEmptyValue": false,
+            "name": "year",
+            "format": "int32",
+            "x-example": 2020,
+            "description": "Report date day",
+            "type": "integer",
+            "required": false
+          }
+        ],
+        "tags": [
+          "accounting-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/scheduler/subscription/switch-cancel": {
+      "post": {
+        "summary": "Cancel the old subscription for the switch payment mean",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "cancelOldSubscriptionsUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "scheduler-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/scheduler/accounting/template5": {
+      "post": {
+        "summary": "Handle stripe fee in accounting",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "template5UsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "scheduler-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/scheduler/accounting/template3": {
+      "post": {
+        "summary": "Handle accounting debt",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "template3UsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "scheduler-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/subscription/{partyId}/nextPaymentSystem": {
+      "get": {
+        "summary": "getNexPaymentSystem",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "getNexPaymentSystemUsingGET",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/NextPaymentSystemResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "partyId",
+            "description": "partyId",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "subscription-resource"
+        ]
+      }
+    },
+    "/billing/v1/health": {
+      "get": {
+        "summary": "Get the health of the service",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "healthUsingGET",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Health"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "health-resource"
+        ]
+      }
+    },
+    "/billing/v1/scheduler/accounting/template4": {
+      "post": {
+        "summary": "Handle stripe fee in accounting",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "template4UsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "scheduler-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/scheduler/accounting/template1": {
+      "post": {
+        "summary": "Handle accounting entries",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "template1UsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "scheduler-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/billing/v1/scheduler/accounting/template2": {
+      "post": {
+        "summary": "Handle accounting benefit",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "template2UsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Technical error"
+          }
+        },
+        "tags": [
+          "scheduler-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    }
+  },
+  "host": "localhost:8080",
+  "securityDefinitions": {
+    "apiKey": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey"
+    }
+  },
+  "definitions": {
+    "JsonException": {
+      "type": "object",
+      "title": "JsonException",
+      "required": [
+        "code",
+        "id",
+        "message"
+      ],
+      "properties": {
+        "trace": {
+          "description": "The stack trace of the JAVA exception. Currently not sent",
+          "type": "string"
+        },
+        "code": {
+          "description": "A code that identify the type of error. Can be used by a front end system to display an error message in the correct language",
+          "type": "string",
+          "example": "BSN_INVALID_AMOUNT"
+        },
+        "id": {
+          "description": "ID that identifies uniquely an error that occured. This value can be used in Kibana to find the call in error. This ID can be displayed to a end user",
+          "type": "string",
+          "example": "jZAfe!mP"
+        },
+        "message": {
+          "description": "A message that describes the error. This message is generic to not send critical data to a end user. The detail of the error is available in the logs",
+          "type": "string",
+          "example": "Business exception"
+        },
+        "params": {
+          "description": "This can be used by a front end system to display an error message with dynamic placeholder",
+          "type": "object",
+          "example": {
+            "some-key": "some-value"
+          }
+        }
+      }
+    },
+    "PatchStripePaymentMethodRequest": {
+      "type": "object",
+      "title": "PatchStripePaymentMethodRequest",
+      "required": [
+        "paymentMethod"
+      ],
+      "properties": {
+        "paymentMethod": {
+          "description": "The new payment method",
+          "type": "string"
+        }
+      }
+    },
+    "Invoice": {
+      "type": "object",
+      "title": "Invoice",
+      "required": [
+        "amountExcludingTax",
+        "amountIncludingTax",
+        "providerAddress",
+        "providerCountryCode",
+        "providerInvoiceNumber",
+        "providerName",
+        "providerPostalCode",
+        "providerTvaNumber"
+      ],
+      "properties": {
+        "providerCountryCode": {
+          "description": "Provider country code",
+          "type": "string",
+          "example": "BE"
+        },
+        "providerInvoiceNumber": {
+          "description": "Provider invoice number",
+          "type": "string",
+          "example": "INV-12345"
+        },
+        "providerAddress": {
+          "description": "Provider address",
+          "type": "string",
+          "example": "rue reine astrid 182"
+        },
+        "providerPostalCode": {
+          "description": "Provider postal code",
+          "type": "string",
+          "example": 4480
+        },
+        "amountExcludingTax": {
+          "format": "double",
+          "description": "Invoice amount without tax",
+          "type": "number",
+          "example": 100
+        },
+        "providerTvaNumber": {
+          "description": "Provider tva number",
+          "type": "string",
+          "example": "BE 0601827679"
+        },
+        "amountIncludingTax": {
+          "format": "double",
+          "description": "Invoice amount with tax",
+          "type": "number",
+          "example": 121
+        },
+        "providerName": {
+          "description": "Provider name",
+          "type": "string",
+          "example": "Rabeux SA"
+        }
+      }
+    },
+    "CreateStripeSubscriptionResponse": {
+      "type": "object",
+      "title": "CreateStripeSubscriptionResponse",
+      "properties": {
+        "id": {
+          "description": "Subscription\u0027s id from Stripe",
+          "type": "string"
+        },
+        "status": {
+          "description": "Status of subscription",
+          "type": "string",
+          "enum": [
+            "completed",
+            "released",
+            "canceled",
+            "not_started",
+            "active"
+          ],
+          "example": "completed"
+        }
+      }
+    },
+    "PaymentSystemProps": {
+      "type": "object",
+      "title": "PaymentSystemProps",
+      "properties": {
+        "paymentMethod": {
+          "description": "Payment method (needed by Stripe for new users. This info is given by Stripe to the front via AJAX call)",
+          "type": "string",
+          "example": "pm_115111511515"
+        },
+        "payerAuthorisationId": {
+          "description": "id use by Gocardless to represent the mandate creation",
+          "type": "string",
+          "example": "PAU000017MGVYM3"
+        }
+      }
+    },
+    "AmountDetails": {
+      "type": "object",
+      "title": "AmountDetails",
+      "properties": {
+        "amounts": {
+          "description": "An ID that will be present in the daily bank report. It\u0027s used to garantee that a payment was sent",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AmountDetail"
+          },
+          "example": "PAY-PR20200619-1234"
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "title": "Product",
+      "properties": {
+        "id": {
+          "description": "Product id in stripe",
+          "type": "string",
+          "example": "p_84818652626"
+        }
+      }
+    },
+    "JsonNode": {
+      "type": "object",
+      "title": "JsonNode"
+    },
+    "CreateSubscription": {
+      "type": "object",
+      "title": "CreateSubscription",
+      "required": [
+        "partyId",
+        "productType",
+        "quoteId"
+      ],
+      "properties": {
+        "paymentSystem": {
+          "description": "Payment system use to create subscription and payment. If not present, the payment system already associated to the party is used",
+          "type": "string",
+          "enum": [
+            "Stripe",
+            "Paypal"
+          ],
+          "example": "Stripe"
+        },
+        "paymentSystemProps": {
+          "description": "Additionnal properties specific to the payment system",
+          "$ref": "#/definitions/PaymentSystemProps"
+        },
+        "partyId": {
+          "description": "The id of the party",
+          "type": "string"
+        },
+        "productType": {
+          "description": "The type of product. This product is mapped to a product defined in the payment system",
+          "type": "string",
+          "enum": [
+            "[\"PropertyRenter\""
+          ],
+          "example": "PropertyRenter"
+        },
+        "quoteId": {
+          "description": "Quote id to use to calculate price",
+          "type": "string",
+          "example": "5e162918-4b2f-4d3d-916a-462e7939ced0"
+        },
+        "startDate": {
+          "format": "date-time",
+          "description": "Billing start date (dd/MM/yyyy). If not present, the current date is used Format\u003d[dd/MM/yyyy]",
+          "type": "string",
+          "example": "01/02/2020"
+        }
+      }
+    },
+    "CreatePaypalSubscriptionResponse": {
+      "type": "object",
+      "title": "CreatePaypalSubscriptionResponse",
+      "properties": {
+        "id": {
+          "description": "Subscription\u0027s id from Stripe",
+          "type": "string"
+        },
+        "urlToSubscribe": {
+          "description": "Url to subscribe to the new subscription in Paypal",
+          "type": "string",
+          "example": "https://sandbox.paypal.be"
+        }
+      }
+    },
+    "InitiatePaymentResponse": {
+      "type": "object",
+      "title": "InitiatePaymentResponse",
+      "required": [
+        "paymentId"
+      ],
+      "properties": {
+        "paymentId": {
+          "description": "An ID that will be present in the daily bank report. It\u0027s used to garantee that a payment was sent",
+          "type": "string",
+          "example": "PAY-PR20200619-1234"
+        }
+      }
+    },
+    "CreateStripeSubscription": {
+      "type": "object",
+      "title": "CreateStripeSubscription",
+      "properties": {
+        "product": {
+          "description": "Subscription\u0027s property information",
+          "$ref": "#/definitions/Product"
+        },
+        "contact": {
+          "description": "Contact information linked to subscription",
+          "$ref": "#/definitions/Contact"
+        },
+        "plan": {
+          "description": "Subscription\u0027s property information",
+          "$ref": "#/definitions/Plan"
+        }
+      }
+    },
+    "AmountDetail": {
+      "type": "object",
+      "title": "AmountDetail",
+      "properties": {
+        "amountType": {
+          "description": "An ID that will be present in the daily bank report. It\u0027s used to garantee that a payment was sent",
+          "type": "string",
+          "enum": [
+            "PremiumEarned",
+            "Fee"
+          ],
+          "example": "PAY-PR20200619-1234"
+        },
+        "amount": {
+          "description": "An ID that will be present in the daily bank report. It\u0027s used to garantee that a payment was sent",
+          "type": "number",
+          "example": "PAY-PR20200619-1234"
+        }
+      }
+    },
+    "SwitchSubscriptionResponse": {
+      "type": "object",
+      "title": "SwitchSubscriptionResponse",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "redirectUrl": {
+          "description": "If payment system is paypal, one needs to redirect the user to a Paypal page. This is the URL of this page",
+          "type": "string",
+          "example": "https://www.paypal.com/webapps/hermes?flow\u003d1-P\u0026ulReturn\u003dtrue\u0026token\u003d47426197BM543364B\u0026useraction\u003dcommit\u0026country.x\u003dBE\u0026locale.x\u003den_US#/checkout/selectFi"
+        },
+        "id": {
+          "description": "Subscription ID. If the payment system is Stripe, this is a scheduled subscription id, otherwise it\u0027s a subscription ID",
+          "type": "string",
+          "example": "sub_H30FrVjngZRgVI"
+        }
+      }
+    },
+    "UpdateStripePolicyNumber": {
+      "type": "object",
+      "title": "UpdateStripePolicyNumber",
+      "required": [
+        "policyNumber"
+      ],
+      "properties": {
+        "policyNumber": {
+          "description": "Policy number of a subscription",
+          "type": "string",
+          "example": "PR20200102-12345"
+        }
+      }
+    },
+    "InitiatePaymentCreditor": {
+      "type": "object",
+      "title": "InitiatePaymentCreditor",
+      "required": [
+        "iban",
+        "name"
+      ],
+      "properties": {
+        "country": {
+          "description": "Country code",
+          "type": "string",
+          "example": "BE"
+        },
+        "iban": {
+          "description": "IBAN of the creditor",
+          "type": "string",
+          "example": "BE26267008469129"
+        },
+        "name": {
+          "description": "Name and First Name of the creditor",
+          "type": "string",
+          "example": "Franki Bruno"
+        },
+        "addressLine1": {
+          "description": "Address line1 of the creditor (no special chars)",
+          "type": "string",
+          "example": "rue de la Victoire 15"
+        },
+        "addressLine2": {
+          "description": "Address line2 of the creditor (no special chars)",
+          "type": "string",
+          "example": "4000 LIEGE"
+        },
+        "bic": {
+          "description": "BIC of the creditor",
+          "type": "string",
+          "example": "GKCCBEBB"
+        }
+      }
+    },
+    "CreateGocardlessMandateReponse": {
+      "type": "object",
+      "title": "CreateGocardlessMandateReponse",
+      "properties": {
+        "redirectUrl": {
+          "description": "Redirect url to create the mandate",
+          "type": "string",
+          "example": "https://redirecturl.com"
+        },
+        "payerAuthorisationId": {
+          "description": "Payer authorisation id",
+          "type": "string",
+          "example": "462860d2-8460-4985-8280-3918dcdf7053"
+        }
+      }
+    },
+    "ReserveIdentifiers": {
+      "type": "object",
+      "title": "ReserveIdentifiers",
+      "properties": {
+        "policyNumber": {
+          "description": "The policyNumber",
+          "type": "string",
+          "example": "PR20200516-0512"
+        },
+        "partyId": {
+          "description": "The party ID",
+          "type": "string",
+          "example": "20200516-0498"
+        },
+        "claimNumber": {
+          "description": "The claimNumber",
+          "type": "string",
+          "example": "CL-PR20200619-1870"
+        }
+      }
+    },
+    "ValidatePaymentMethod": {
+      "type": "object",
+      "title": "ValidatePaymentMethod",
+      "required": [
+        "partyId",
+        "quoteId"
+      ],
+      "properties": {
+        "paymentSystem": {
+          "description": "Payment system use to create subscription and payment. If not present, the payment system already associated to the party is used",
+          "type": "string",
+          "enum": [
+            "Stripe",
+            "Paypal"
+          ],
+          "example": "Stripe"
+        },
+        "paymentMethod": {
+          "description": "Payment method (needed by Stripe for new users. This info is given by Stripe to the front via AJAX call)",
+          "type": "string",
+          "example": "pm_115111511515"
+        },
+        "partyId": {
+          "description": "The id of the party",
+          "type": "string"
+        },
+        "quoteId": {
+          "description": "Quote id to use to calculate price",
+          "type": "string",
+          "example": "5e162918-4b2f-4d3d-916a-462e7939ced0"
+        }
+      }
+    },
+    "CardInfo": {
+      "type": "object",
+      "title": "CardInfo",
+      "properties": {
+        "expMonth": {
+          "format": "int64",
+          "description": "Month when the credit card expire",
+          "type": "integer",
+          "example": 1
+        },
+        "last4digits": {
+          "description": "Last 4 digits of a credit card",
+          "type": "string",
+          "example": 4242
+        },
+        "expYear": {
+          "format": "int64",
+          "description": "Year when the credit card expire",
+          "type": "integer",
+          "example": 2022
+        },
+        "cardType": {
+          "description": "The brand of the credit card",
+          "type": "string",
+          "example": "visa"
+        }
+      }
+    },
+    "StructuredCommunicationResponse": {
+      "type": "object",
+      "title": "StructuredCommunicationResponse",
+      "required": [
+        "displayReference",
+        "reference"
+      ],
+      "properties": {
+        "reference": {
+          "description": "A unique structured communication",
+          "type": "string",
+          "example": "000000005454"
+        },
+        "displayReference": {
+          "description": "The structured communication with the \"/\"",
+          "type": "string",
+          "example": "000/0000/05454"
+        }
+      }
+    },
+    "Payment": {
+      "type": "object",
+      "title": "Payment",
+      "required": [
+        "amount",
+        "coverageEndDate",
+        "coverageStartDate"
+      ],
+      "properties": {
+        "coverageStartDate": {
+          "format": "date-time",
+          "description": "Start coverage start date of the period unpaid Format\u003d[dd/MM/yyyy]",
+          "type": "string",
+          "example": "05/02/2021"
+        },
+        "amount": {
+          "format": "double",
+          "description": "Amount due",
+          "type": "number",
+          "example": 15
+        },
+        "coverageEndDate": {
+          "format": "date-time",
+          "description": "Start coverage end date of the period unpaid Format\u003d[dd/MM/yyyy]",
+          "type": "string",
+          "example": "05/03/2021"
+        }
+      }
+    },
+    "SwitchSubscription": {
+      "type": "object",
+      "title": "SwitchSubscription",
+      "required": [
+        "partyId",
+        "paymentSystem",
+        "paymentSystemProps"
+      ],
+      "properties": {
+        "paymentSystem": {
+          "description": "Payment system use to create subscription and payment. If not present, the payment system already associated to the party is used",
+          "type": "string",
+          "enum": [
+            "Stripe",
+            "Paypal",
+            "GoCardLess"
+          ],
+          "example": "Stripe"
+        },
+        "paymentSystemProps": {
+          "description": "Additionnal properties specific to the payment system",
+          "$ref": "#/definitions/PaymentSystemProps"
+        },
+        "partyId": {
+          "description": "user id",
+          "type": "string",
+          "example": "462860d2-8460-4985-8280-3918dcdf7053"
+        }
+      }
+    },
+    "CreateGocardlessMandateTokenReponse": {
+      "type": "object",
+      "title": "CreateGocardlessMandateTokenReponse",
+      "properties": {
+        "token": {
+          "description": "Token for DropIn",
+          "type": "string",
+          "example": "pfrnvnornvonrovnjornvjonrvnjrnvnr"
+        }
+      }
+    },
+    "CreateGocardlessMandate": {
+      "type": "object",
+      "title": "CreateGocardlessMandate",
+      "properties": {
+        "redirectUrl": {
+          "description": "Redirect url in case of success",
+          "type": "string",
+          "example": "https://redirecturl.com"
+        },
+        "partyId": {
+          "description": "user id un cognito",
+          "type": "string",
+          "example": "462860d2-8460-4985-8280-3918dcdf7053"
+        }
+      }
+    },
+    "InitiatePaymentCommunication": {
+      "type": "object",
+      "title": "InitiatePaymentCommunication",
+      "properties": {
+        "unstructured": {
+          "description": "Unstructured communication",
+          "type": "string",
+          "example": "Payment claim CL-PR20200619-4898"
+        },
+        "structured": {
+          "description": "Structured communication. If structured communication is present, unstructured is ignored",
+          "type": "string",
+          "example": "000000005454"
+        }
+      }
+    },
+    "Refund": {
+      "type": "object",
+      "title": "Refund",
+      "properties": {
+        "creditCardLast4Digits": {
+          "type": "string"
+        },
+        "amount": {
+          "format": "double",
+          "type": "number"
+        },
+        "creditCardType": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        }
+      }
+    },
+    "ValidatePaymentMethodResponse": {
+      "type": "object",
+      "title": "ValidatePaymentMethodResponse",
+      "required": [
+        "id",
+        "status"
+      ],
+      "properties": {
+        "redirectUrl": {
+          "description": "If payment system is paypal, one needs to redirect the user to a Paypal page. This is the URL of this page",
+          "type": "string",
+          "example": "https://www.paypal.com/webapps/hermes?flow\u003d1-P\u0026ulReturn\u003dtrue\u0026token\u003d47426197BM543364B\u0026useraction\u003dcommit\u0026country.x\u003dBE\u0026locale.x\u003den_US#/checkout/selectFi"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "id": {
+          "description": "Payment id in OnHoldPayment table",
+          "type": "string",
+          "example": "7bb5dc1e-cb98-4eb6-a903-fcb7a0fbb914"
+        },
+        "status": {
+          "description": "Subscription ID. If the payment system is Stripe, this is a scheduled subscription id, otherwise it\u0027s a subscription ID",
+          "type": "string",
+          "enum": [
+            "SUCCESS",
+            "FAILED",
+            "PENDING"
+          ],
+          "example": "sub_H30FrVjngZRgVI"
+        }
+      }
+    },
+    "PaymentReminderResponse": {
+      "type": "object",
+      "title": "PaymentReminderResponse",
+      "required": [
+        "fee",
+        "payments",
+        "sessionId",
+        "totalAmount"
+      ],
+      "properties": {
+        "totalAmount": {
+          "format": "double",
+          "description": "Sum of unpaid payment and fee",
+          "type": "number",
+          "example": 25
+        },
+        "payments": {
+          "description": "A list of failed payments",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Payment"
+          }
+        },
+        "fee": {
+          "format": "double",
+          "description": "A link to mollie to process the payment in mollie",
+          "type": "number",
+          "example": 10
+        },
+        "sessionId": {
+          "description": "Session id to create the paiement in Stripe",
+          "type": "string",
+          "example": 1234567
+        }
+      }
+    },
+    "Cancel": {
+      "type": "object",
+      "title": "Cancel",
+      "required": [
+        "dryRun",
+        "endDate",
+        "policyNumber"
+      ],
+      "properties": {
+        "dryRun": {
+          "description": "Boolean if true process cancel else preview cancel",
+          "type": "boolean",
+          "example": false
+        },
+        "endDate": {
+          "format": "date-time",
+          "description": "End date of the subscription",
+          "type": "string",
+          "example": false
+        },
+        "policyNumber": {
+          "description": "Policy number linked to subscription to cancel",
+          "type": "string",
+          "example": false
+        }
+      }
+    },
+    "InitiatePaymentRequest": {
+      "type": "object",
+      "title": "InitiatePaymentRequest",
+      "required": [
+        "amount",
+        "creditor",
+        "type"
+      ],
+      "properties": {
+        "debitor": {
+          "description": "The account that will send the money",
+          "type": "string",
+          "enum": [
+            "Flora"
+          ],
+          "example": "Flora"
+        },
+        "amount": {
+          "description": "The amount of money to send",
+          "type": "number",
+          "example": 2350.75
+        },
+        "identifiers": {
+          "description": "Common identifiers used in reporting",
+          "$ref": "#/definitions/InitiatePaymentIdentifiers"
+        },
+        "creditor": {
+          "description": "The person that will receive the money",
+          "$ref": "#/definitions/InitiatePaymentCreditor"
+        },
+        "details": {
+          "description": "Non mandatory details, but allow to not query Salesforce to retrieve additional infos",
+          "$ref": "#/definitions/InitiatePaymentDetails"
+        },
+        "type": {
+          "description": "Type used for accounting",
+          "type": "string",
+          "enum": [
+            "Invoice",
+            "Receipt",
+            "Compensation",
+            "Other"
+          ],
+          "example": "Compensation"
+        },
+        "communication": {
+          "description": "Structured or Unstructured communication, only use in case of outgoing payment",
+          "$ref": "#/definitions/InitiatePaymentCommunication"
+        },
+        "amountDetails": {
+          "$ref": "#/definitions/AmountDetails"
+        }
+      }
+    },
+    "ReminderLevel2Request": {
+      "type": "object",
+      "title": "ReminderLevel2Request",
+      "required": [
+        "suspendDate",
+        "terminationDate"
+      ],
+      "properties": {
+        "suspendDate": {
+          "format": "date-time",
+          "description": "Date of policy suspension Format\u003d[dd/MM/yyyy]",
+          "type": "string",
+          "example": "01/06/2021"
+        },
+        "terminationDate": {
+          "format": "date-time",
+          "description": "Date of policy termination Format\u003d[dd/MM/yyyy]",
+          "type": "string",
+          "example": "01/07/2021"
+        }
+      }
+    },
+    "RenewSubscriptionResponse": {
+      "type": "object",
+      "title": "RenewSubscriptionResponse",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "description": "Subscription ID. If the payment system is Stripe, this is a scheduled subscription id, otherwise it\u0027s a subscription ID",
+          "type": "string",
+          "example": "sub_H30FrVjngZRgVI"
+        }
+      }
+    },
+    "CreatePortalLinkResponse": {
+      "type": "object",
+      "title": "CreatePortalLinkResponse",
+      "properties": {
+        "url": {
+          "description": "A temporary URL to redirect the user to the Stripe portal",
+          "type": "string"
+        }
+      }
+    },
+    "EventAccounting": {
+      "type": "object",
+      "title": "EventAccounting",
+      "required": [
+        "product",
+        "type"
+      ],
+      "properties": {
+        "product": {
+          "description": "The type of product the event is related to (Property, Motor, ...)",
+          "type": "string",
+          "enum": [
+            "Property"
+          ],
+          "example": "Property"
+        },
+        "amount": {
+          "format": "double",
+          "description": "A floating number with a precision of two digits that represents the amount of money received or sent by Flora (depending on the field type)",
+          "type": "number",
+          "example": 15.5
+        },
+        "endDate": {
+          "format": "date-time",
+          "description": "If the event is linked to a start and end date (i.e: coverage start date / coverage end date), this field contains the end date Format\u003d[ddMMyyyy]",
+          "type": "string",
+          "example": 30032021
+        },
+        "active": {
+          "description": "True if event can be part of the report",
+          "type": "boolean",
+          "example": true
+        },
+        "claimId": {
+          "description": "A reference to a claim via its claim number",
+          "type": "string",
+          "example": 12345678
+        },
+        "source": {
+          "description": "The transaction system at the origin of the amout received or sent. Allowed values are Paypal, Stripe and Isabel",
+          "type": "string",
+          "enum": [
+            "Stripe",
+            "Paypal",
+            "Isabel",
+            "GoCardLess",
+            "Other"
+          ],
+          "example": "GoCardLess"
+        },
+        "type": {
+          "description": "The type of event. This type determines in which reports the data will be stored",
+          "type": "string",
+          "enum": [
+            "PremiumIssued",
+            "PremiumEarned",
+            "CreditNote",
+            "Loss",
+            "ClaimCompensationIssued",
+            "ClaimCompensationPerformed",
+            "ClaimExpenseIssued",
+            "ClaimExpensePerformed",
+            "RecoveryIssued",
+            "RecoveryPerformed"
+          ],
+          "example": "PremiumIssued"
+        },
+        "transactionId": {
+          "description": "Reference to a transaction/invoice. This is a unique ID coming from the transaction system",
+          "type": "string",
+          "example": "in_19yTU92eZvKYlo2C7uDjvu6v"
+        },
+        "props": {
+          "description": "A flexible JSON string that depends on the event type",
+          "$ref": "#/definitions/JsonNode",
+          "example": {
+            "firstname": "Bruno",
+            "name": "Franki"
+          }
+        },
+        "policyId": {
+          "description": "A reference to a policy via its policy number",
+          "type": "string",
+          "example": "PR20200315-0001"
+        },
+        "occuranceDate": {
+          "format": "date-time",
+          "description": "If the event is linked to a claim, the date of the claim Format\u003d[ddMMyyyy]",
+          "type": "string",
+          "example": 30032021
+        },
+        "partyId": {
+          "description": "A reference to a party. If the party is a client, then the field contains the cognito ID, otherwise this field can contain something like an enterprise number",
+          "type": "string",
+          "example": "50c2c728-c334-44c0-b2bc-3953355c7e99"
+        },
+        "startDate": {
+          "format": "date-time",
+          "description": "If the event is linked to a start and end date (i.e: coverage start date / coverage end date), this field contains the start date Format\u003d[ddMMyyyy]",
+          "type": "string",
+          "example": 30032020
+        }
+      }
+    },
+    "InitiatePaymentIdentifiers": {
+      "type": "object",
+      "title": "InitiatePaymentIdentifiers",
+      "properties": {
+        "paymentId": {
+          "description": "An ID that will be present in the daily bank report. It\u0027s used to garantee that a payment was sent",
+          "type": "string",
+          "example": "PAY-PR20200619-1234"
+        },
+        "policyNumber": {
+          "description": "The policyNumber",
+          "type": "string",
+          "example": "PR20200516-0512"
+        },
+        "partyId": {
+          "description": "The party ID",
+          "type": "string",
+          "example": "20200516-0498"
+        },
+        "claimNumber": {
+          "description": "The claimNumber",
+          "type": "string",
+          "example": "CL-PR20200619-1870"
+        }
+      }
+    },
+    "ClaimReserve": {
+      "type": "object",
+      "title": "ClaimReserve",
+      "required": [
+        "category",
+        "clientType",
+        "occurenceDate",
+        "product",
+        "reserve",
+        "reserveType",
+        "status"
+      ],
+      "properties": {
+        "product": {
+          "description": "The type of product",
+          "type": "string",
+          "enum": [
+            "PropertyRenter"
+          ],
+          "example": "PropertyRenter"
+        },
+        "subCategory": {
+          "description": "The sub category of the claim",
+          "type": "string",
+          "enum": [
+            "CriminalFire",
+            "LeakingGasket",
+            "BurstPipeHome",
+            "BurstPipeWaterCompany",
+            "LeakageHome",
+            "LeakageNeighbour",
+            "WaterOverflow",
+            "FloodingOverflowingRiverOrSewage",
+            "ElectricalGridIntervention",
+            "HomeElectricalSystem",
+            "Lightning",
+            "Unknown",
+            "OutsideWindow",
+            "InsideWindow",
+            "Screen",
+            "GlassStoveTop",
+            "SanitaryAppliance",
+            "GlassPartInFurniture",
+            "GlassFurniture",
+            "GreenhouseOrVeranda"
+          ],
+          "example": "CriminalFire"
+        },
+        "clientType": {
+          "description": "The type of customer",
+          "type": "string",
+          "enum": [
+            "B2B",
+            "B2C"
+          ],
+          "example": "B2C"
+        },
+        "occurenceDate": {
+          "format": "date-time",
+          "description": "When the claim occured Format\u003d[dd-MM-yy]",
+          "type": "string",
+          "example": "25-06-20"
+        },
+        "reserve": {
+          "format": "float",
+          "description": "The current amount in the reserve",
+          "type": "number",
+          "example": 1525.12
+        },
+        "reserveType": {
+          "description": "The type of reserve",
+          "type": "string",
+          "enum": [
+            "Analytical",
+            "Actuarial"
+          ],
+          "example": "Analytical"
+        },
+        "category": {
+          "description": "The main category of the claim",
+          "type": "string",
+          "enum": [
+            "Fire",
+            "PJ",
+            "Theft",
+            "Storm",
+            "Disaster",
+            "Attack"
+          ],
+          "example": "Fire"
+        },
+        "closingDate": {
+          "format": "date-time",
+          "description": "When the claim was closed Format\u003d[dd-MM-yy]",
+          "type": "string",
+          "example": "25-06-20"
+        },
+        "openingDate": {
+          "format": "date-time",
+          "description": "When the claim was opened Format\u003d[dd-MM-yy]",
+          "type": "string",
+          "example": "25-06-20"
+        },
+        "status": {
+          "description": "The current status of the claim",
+          "type": "string",
+          "enum": [
+            "InProgress",
+            "Closed",
+            "Cancelled"
+          ],
+          "example": "InProgress"
+        }
+      }
+    },
+    "GetSetupIntentResponse": {
+      "type": "object",
+      "title": "GetSetupIntentResponse",
+      "properties": {
+        "id": {
+          "description": "SetupIntent\u0027s id from Stripe",
+          "type": "string"
+        }
+      }
+    },
+    "Context": {
+      "type": "object",
+      "title": "Context",
+      "required": [
+        "returnUrlError",
+        "returnUrlSuccess"
+      ],
+      "properties": {
+        "returnUrlSuccess": {
+          "description": "Url to call in case of success in paypal",
+          "type": "string",
+          "example": "https://example.com/returnUrl"
+        },
+        "returnUrlError": {
+          "description": "Url to call in case of error in paypal",
+          "type": "string",
+          "example": "https://example.com/cancelUrl"
+        }
+      }
+    },
+    "InitiatePaymentDetails": {
+      "type": "object",
+      "title": "InitiatePaymentDetails",
+      "required": [
+        "requestedExecutionDate"
+      ],
+      "properties": {
+        "requestedExecutionDate": {
+          "format": "date-time",
+          "description": "The date when the payment is asked to be executed. Max 1 year in the future",
+          "type": "string"
+        },
+        "claim": {
+          "description": "The detail of the claim if the payment is of type Claim. This allows the middleware to not query Salesforce",
+          "$ref": "#/definitions/ClaimReserve"
+        },
+        "invoice": {
+          "description": " The detail of the invoice, if field insert invoice in invoice table",
+          "$ref": "#/definitions/Invoice"
+        }
+      }
+    },
+    "NextPaymentSystemResponse": {
+      "type": "object",
+      "title": "NextPaymentSystemResponse",
+      "required": [
+        "paymentSystem"
+      ],
+      "properties": {
+        "paymentSystem": {
+          "description": "Payment system use to create subscription and payment. If not present, the payment system already associated to the party is used",
+          "type": "string",
+          "enum": [
+            "Stripe",
+            "Paypal",
+            "GoCardLess"
+          ],
+          "example": "Stripe"
+        },
+        "cardType": {
+          "description": "The brand of the credit card",
+          "type": "string",
+          "example": "visa"
+        },
+        "lastDigit": {
+          "description": " Last digit of payment",
+          "type": "string",
+          "example": 1234
+        }
+      }
+    },
+    "Health": {
+      "type": "object",
+      "title": "Health",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "OK",
+            "NOK"
+          ]
+        }
+      }
+    },
+    "Plan": {
+      "type": "object",
+      "title": "Plan",
+      "required": [
+        "abex"
+      ],
+      "properties": {
+        "price": {
+          "format": "double",
+          "description": "Subscription price",
+          "type": "number",
+          "example": 22.6
+        },
+        "abex": {
+          "format": "double",
+          "description": "Abex use to calculate quote",
+          "type": "number",
+          "example": 890
+        },
+        "paymentCurrency": {
+          "description": "Currency of payment",
+          "type": "string",
+          "enum": [
+            "eur"
+          ],
+          "example": "eur"
+        },
+        "startDate": {
+          "format": "date-time",
+          "description": "Billing start date (dd/MM/yyyy) Format\u003d[dd/MM/yyyy]",
+          "type": "string",
+          "example": "01/02/2020"
+        },
+        "paymentOccurance": {
+          "description": "Occurance of payment",
+          "type": "string",
+          "enum": [
+            "Monthly"
+          ],
+          "example": "Monthly"
+        }
+      }
+    },
+    "RenewSubscription": {
+      "type": "object",
+      "title": "RenewSubscription",
+      "required": [
+        "quoteId",
+        "renewalDate"
+      ],
+      "properties": {
+        "renewalDate": {
+          "format": "date-time",
+          "description": "Policy renewal date (dd/MM/yyyy) Format\u003d[dd/MM/yyyy]",
+          "type": "string",
+          "example": "01/02/2021"
+        },
+        "quoteId": {
+          "description": "Id of the quote with updated pricing and ABEX Format\u003d[dd/MM/yyyy]",
+          "type": "string",
+          "example": "afc7106a-583a-4a8a-acc8-a913e5710420"
+        }
+      }
+    },
+    "CancelSubscriptionResponse": {
+      "type": "object",
+      "title": "CancelSubscriptionResponse",
+      "properties": {
+        "refund": {
+          "$ref": "#/definitions/Refund"
+        }
+      }
+    },
+    "Contact": {
+      "type": "object",
+      "title": "Contact",
+      "properties": {
+        "firstname": {
+          "description": "First name of the client",
+          "type": "string",
+          "example": "Florian"
+        },
+        "customerId": {
+          "description": "Customer id, provide customerId to use an existing customer or fill object to create a new one",
+          "type": "string",
+          "example": "cus_12345"
+        },
+        "name": {
+          "description": "Name of the client",
+          "type": "string",
+          "example": "Rabeux"
+        },
+        "paymentMethod": {
+          "description": "Payment method received by Stripe in front end",
+          "type": "string",
+          "example": "pm_115111511515"
+        },
+        "email": {
+          "description": "User email",
+          "type": "string",
+          "example": "florian.rabeux@nrb.be"
+        }
+      }
+    },
+    "UpsertReserveRequest": {
+      "type": "object",
+      "title": "UpsertReserveRequest",
+      "properties": {
+        "identifiers": {
+          "description": "Common identifiers",
+          "$ref": "#/definitions/ReserveIdentifiers"
+        },
+        "claim": {
+          "description": "The detail of the claim if the payment is of type Claim. This allows the middleware to not query Salesforce",
+          "$ref": "#/definitions/ClaimReserve"
+        }
+      }
+    },
+    "CreatePaypalSubscription": {
+      "type": "object",
+      "title": "CreatePaypalSubscription",
+      "required": [
+        "contact",
+        "plan",
+        "product"
+      ],
+      "properties": {
+        "product": {
+          "description": "Subscription\u0027s property information",
+          "$ref": "#/definitions/Product"
+        },
+        "contact": {
+          "description": "Contact information linked to subscription",
+          "$ref": "#/definitions/Contact"
+        },
+        "context": {
+          "$ref": "#/definitions/Context"
+        },
+        "plan": {
+          "description": "Subscription\u0027s property information",
+          "$ref": "#/definitions/Plan"
+        }
+      }
+    },
+    "ChangeEmail": {
+      "type": "object",
+      "title": "ChangeEmail",
+      "required": [
+        "email",
+        "partyId"
+      ],
+      "properties": {
+        "partyId": {
+          "description": "The id of the party used to retrieve the payment system",
+          "type": "string"
+        },
+        "email": {
+          "description": "The new customer email address to update into its payment system",
+          "type": "string",
+          "example": "simon.lucchese@nrb.be"
+        }
+      }
+    },
+    "CreateSubscriptionResponse": {
+      "type": "object",
+      "title": "CreateSubscriptionResponse",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "redirectUrl": {
+          "description": "If payment system is paypal, one needs to redirect the user to a Paypal page. This is the URL of this page",
+          "type": "string",
+          "example": "https://www.paypal.com/webapps/hermes?flow\u003d1-P\u0026ulReturn\u003dtrue\u0026token\u003d47426197BM543364B\u0026useraction\u003dcommit\u0026country.x\u003dBE\u0026locale.x\u003den_US#/checkout/selectFi"
+        },
+        "id": {
+          "description": "Subscription ID. If the payment system is Stripe, this is a scheduled subscription id, otherwise it\u0027s a subscription ID",
+          "type": "string",
+          "example": "sub_H30FrVjngZRgVI"
+        }
+      }
+    },
+    "RefreshCardNumberResponse": {
+      "type": "object",
+      "title": "RefreshCardNumberResponse",
+      "properties": {
+        "last4Digits": {
+          "description": "The last 4 digits of the card number",
+          "type": "string"
+        }
+      }
+    },
+    "ValidatePaymentMethodCallbackResponse": {
+      "type": "object",
+      "title": "ValidatePaymentMethodCallbackResponse",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "description": "Status of on hold payment",
+          "type": "string",
+          "enum": [
+            "SUCCESS",
+            "FAILED"
+          ]
+        }
+      }
+    },
+    "UpdatePaypalPolicyNumber": {
+      "type": "object",
+      "title": "UpdatePaypalPolicyNumber",
+      "required": [
+        "policyNumber"
+      ],
+      "properties": {
+        "policyNumber": {
+          "description": "Policy number of a subscription",
+          "type": "string",
+          "example": "PR20200102-12345"
+        }
+      }
+    }
+  },
+  "swagger": "2.0",
+  "info": {
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    },
+    "contact": {},
+    "description": "Api Documentation",
+    "termsOfService": "urn:tos",
+    "title": "Api Documentation",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "accounting-resource",
+      "description": "Accounting Resource"
+    },
+    {
+      "name": "event-resource",
+      "description": "Event Resource"
+    },
+    {
+      "name": "health-resource",
+      "description": "Health Resource"
+    },
+    {
+      "name": "payment-resource",
+      "description": "Payment Resource"
+    },
+    {
+      "name": "paypal-subscription-resource",
+      "description": "Paypal Subscription Resource"
+    },
+    {
+      "name": "reminder-resource",
+      "description": "Reminder Resource"
+    },
+    {
+      "name": "reserve-resource",
+      "description": "Reserve Resource"
+    },
+    {
+      "name": "scheduler-resource",
+      "description": "Scheduler Resource"
+    },
+    {
+      "name": "stripe-subscription-resource",
+      "description": "Stripe Subscription Resource"
+    },
+    {
+      "name": "subscription-resource",
+      "description": "Subscription Resource"
+    }
+  ]
+}
