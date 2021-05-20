@@ -28,25 +28,25 @@ async function run() {
 
     console.log("================== Imported API", JSON.stringify(importedApi, null, 2));
     
-    // // Deploy the API on default stage
-    // const deployedApi = await apiGtw.createDeployment(importedApi.id, "Test githubaction", "default", "Default");
-    // console.log("================== Deployed API", JSON.stringify(deployedApi, null, 2));
+    // Deploy the API on default stage
+    const deployedApi = await apiGtw.createDeployment(importedApi.id, "Test githubaction", "default", "Default");
+    console.log("================== Deployed API", JSON.stringify(deployedApi, null, 2));
 
-    // // Associate a web ACL to the stage
-    // let webAcl = await apiGtw.updateWebAcl(importedApi.id, domainName);
-    // console.log("================== Web ACL", JSON.stringify(webAcl, null, 2));
+    // Associate a web ACL to the stage
+    let webAcl = await apiGtw.updateWebAcl(importedApi.id, domainName);
+    console.log("================== Web ACL", JSON.stringify(webAcl, null, 2));
 
-    // // Add stage variable and enable logs
-    // let stage = await apiGtw.updateStage(importedApi.id, domainName);
-    // console.log("================== Stage", JSON.stringify(stage, null, 2));
+    // Add stage variable and enable logs
+    let stage = await apiGtw.updateStage(importedApi.id, domainName);
+    console.log("================== Stage", JSON.stringify(stage, null, 2));
 
-    // // Associate API to custom domain name + base path
-    // let basePathMapping = await apiGtw.getBasePathMapping(basePath, domainName);
-    // if (!basePathMapping) {
-    //   basePathMapping = await apiGtw.createBasePathMapping(importedApi.id, basePath, domainName);
-    // }
+    // Associate API to custom domain name + base path
+    let basePathMapping = await apiGtw.getBasePathMapping(basePath, domainName);
+    if (!basePathMapping) {
+      basePathMapping = await apiGtw.createBasePathMapping(importedApi.id, basePath, domainName);
+    }
 
-    // console.log("================== basePathMapping", JSON.stringify(basePathMapping, null, 2));
+    console.log("================== basePathMapping", JSON.stringify(basePathMapping, null, 2));
   } 
   catch (error) {
     core.setFailed(error.message);
