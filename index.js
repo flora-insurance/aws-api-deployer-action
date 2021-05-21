@@ -8,7 +8,6 @@ const deploy = require('./lib/deploy');
 
 async function run() {
   try { 
-    const targetEnv = core.getInput('target-env') || 'dev';
     const swaggerPath = core.getInput('swagger-path') || `${process.cwd()}/swagger.json`;
     const apiName = core.getInput('api-name') || 'Test githubaction API v1';
     const region = core.getInput('aws-region') || 'eu-west-1';
