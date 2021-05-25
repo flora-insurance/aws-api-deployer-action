@@ -1,0 +1,3540 @@
+{
+  "basePath": "/",
+  "paths": {
+    "/party/v1/accounts/{cognitoId}/cognito": {
+      "get": {
+        "summary": "Get account info",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "getCognitoAccountUsingGET",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/CognitoAccount"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cognitoId",
+            "description": "cognitoId",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "account-resource"
+        ]
+      }
+    },
+    "/party/v1/properties/getFloodInfo": {
+      "post": {
+        "summary": "Get info flood info about an address",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "getFloodInfoUsingPOST",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/FloodResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/PropertyAccount$Contact$Address"
+            },
+            "in": "body",
+            "name": "address",
+            "description": "address",
+            "required": true
+          }
+        ],
+        "tags": [
+          "property-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/party/v1/properties/resendEmail": {
+      "post": {
+        "summary": "Resend an email to validate the email address",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "resendEmailUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/ResendEmailRequest"
+            },
+            "in": "body",
+            "name": "resendEmailRequest",
+            "description": "resendEmailRequest",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "header",
+            "name": "x-correlationId",
+            "x-example": "ab48c444-1d55-43d0-a6c1-8522dfe76211",
+            "description": "A unique key returned when the user was created. This represents the Cognito ID",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-language",
+            "x-example": "Fr",
+            "description": "x-language",
+            "type": "string",
+            "required": true,
+            "enum": [
+              "Fr",
+              "Nl",
+              "En",
+              "De"
+            ]
+          }
+        ],
+        "tags": [
+          "property-account-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/party/v1/properties/validate": {
+      "post": {
+        "summary": "Validate the account of a user",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "validateAccountUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/ValidateAccountRequest"
+            },
+            "in": "body",
+            "name": "validateAccountRequest",
+            "description": "validateAccountRequest",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "tags": [
+          "property-account-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/party/v1/properties/stripeSubscription": {
+      "post": {
+        "summary": "Create a new stripe subscription",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "createStripeSubscriptionUsingPOST_1",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/CreateStripeSubscriptionResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/StripeSubscription"
+            },
+            "in": "body",
+            "name": "createStripeSubscriptionRequest",
+            "description": "createStripeSubscriptionRequest",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "header",
+            "name": "x-correlationId",
+            "description": "x-correlationId",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "stripe-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/party/v1/properties/{cognitoId}/summary": {
+      "get": {
+        "summary": "Gets the summary of a user",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "getSummaryByUserIdUsingGET",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/AccountSummary"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cognitoId",
+            "description": "The user id for whom we should get the summary",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "summary-resource"
+        ]
+      }
+    },
+    "/public/party/v1/properties": {
+      "post": {
+        "summary": "Create a property account",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "createAccountUsingPOST",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/CreateAccountResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/PropertyAccount"
+            },
+            "in": "body",
+            "name": "createAccountRequest",
+            "description": "createAccountRequest",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "header",
+            "name": "x-correlationId",
+            "x-example": "ab48c444-1d55-43d0-a6c1-8522dfe76211",
+            "description": "A unique key returned when the user was created. This represents the Cognito ID",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-language",
+            "x-example": "Fr",
+            "description": "x-language",
+            "type": "string",
+            "required": true,
+            "enum": [
+              "Fr",
+              "Nl",
+              "En",
+              "De"
+            ]
+          }
+        ],
+        "tags": [
+          "property-account-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/party/v1/accounts/resetPassword": {
+      "post": {
+        "summary": "Send a mail to reset the password. The mail contains a link with a unique temporary ID",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "resetPasswordUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/ResetPasswordRequest"
+            },
+            "in": "body",
+            "name": "resetEmailRequest",
+            "description": "resetEmailRequest",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "header",
+            "name": "x-language",
+            "x-example": "Fr",
+            "description": "x-language",
+            "type": "string",
+            "required": true,
+            "enum": [
+              "Fr",
+              "Nl",
+              "En",
+              "De"
+            ]
+          }
+        ],
+        "tags": [
+          "account-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/party/v1/accounts/changePassword": {
+      "post": {
+        "summary": "Change the password of a user in Cognito",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "changePasswordUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/ChangePasswordRequest"
+            },
+            "in": "body",
+            "name": "changePasswordRequest",
+            "description": "changePasswordRequest",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "tags": [
+          "account-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/party/v1/scheduler/blacklist": {
+      "post": {
+        "summary": "Update db black list",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "blacklistUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "tags": [
+          "scheduler-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/party/v1/accounts/getMyAccount": {
+      "get": {
+        "summary": "Get account info",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "getAccountUsingGET",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/AccountPublic"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "header",
+            "name": "x-correlationId",
+            "description": "x-correlationId",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "account-resource"
+        ]
+      }
+    },
+    "/public/party/v1/properties/getMyQuote": {
+      "get": {
+        "summary": "Get the quote from the subscription",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "getMyQuoteUsingGET",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/GetMyQuoteResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "allowEmptyValue": false,
+            "name": "startDate",
+            "format": "date-time",
+            "x-example": "01/10/2020",
+            "description": "Start date of the policy",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "header",
+            "name": "x-correlationId",
+            "description": "x-correlationId",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "property-account-resource"
+        ]
+      }
+    },
+    "/public/party/v1/properties/{userId}/switchNoData": {
+      "post": {
+        "summary": "Switch insurance (sign document)",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "switchInsuranceNoDataUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "description": "The user id (cognito id)",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "header",
+            "name": "x-language",
+            "x-example": "Fr",
+            "description": "x-language",
+            "type": "string",
+            "required": true,
+            "enum": [
+              "Fr",
+              "Nl",
+              "En",
+              "De"
+            ]
+          }
+        ],
+        "tags": [
+          "property-account-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/party/v1/health": {
+      "get": {
+        "summary": "Get the health of the service",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "healthUsingGET",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Health"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "tags": [
+          "health-resource"
+        ]
+      }
+    },
+    "/public/party/v1/properties/getFloodInfo": {
+      "post": {
+        "summary": "Get info flood info about an address",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "getPublicFloodInfoUsingPOST",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/FloodResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/PropertyAccount$Contact$Address"
+            },
+            "in": "body",
+            "name": "address",
+            "description": "address",
+            "required": true
+          }
+        ],
+        "tags": [
+          "property-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/party/v1/properties/paypalSubscription": {
+      "post": {
+        "summary": "Create a new stripe subscription",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "createStripeSubscriptionUsingPOST",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/CreatePaypalSubscriptionResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/PaypalSubscription"
+            },
+            "in": "body",
+            "name": "createPaypalSubscriptionRequest",
+            "description": "createPaypalSubscriptionRequest",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "header",
+            "name": "x-correlationId",
+            "description": "x-correlationId",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "paypal-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/party/v1/accounts/{email}/exists": {
+      "get": {
+        "summary": "Check if a account already exists in the database based on a mail address",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "emailExistUsingGET",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/EmailExistResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "description": "email",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "tags": [
+          "account-resource"
+        ]
+      }
+    },
+    "/public/party/v1/accounts/changeEmail": {
+      "post": {
+        "summary": "Change the email of a user in Cognito and in Salesforce based on a key sent by mail",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "changeEmailUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/ChangeEmailRequest"
+            },
+            "in": "body",
+            "name": "changeEmailRequest",
+            "description": "changeEmailRequest",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "tags": [
+          "account-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/party/v1/properties/validateNotMe": {
+      "post": {
+        "summary": "Inform the system that the owner of the email address is not at the origin of the account creation",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "validateAccountNotMeUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/ValidateAccountRequest"
+            },
+            "in": "body",
+            "name": "validateAccountNotMeRequest",
+            "description": "validateAccountNotMeRequest",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "tags": [
+          "property-account-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/party/v1/properties/validateEmailQuote": {
+      "post": {
+        "summary": "Create an account with a minimum set of data and send a quote by mail",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "validateEmailQuoteUsingPOST",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/SubscriptionContext"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/ValidateQuoteEmailRequest"
+            },
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "tags": [
+          "property-account-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/party/v1/properties/subscription/contexts/{cognitoId}": {
+      "patch": {
+        "summary": "Update subscription context state",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "updateSubscriptionContextStateUsingPATCH",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cognitoId",
+            "description": "cognitoId",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/UpdateSubscriptionContextState"
+            },
+            "in": "body",
+            "name": "updateSubscriptionContextState",
+            "description": "updateSubscriptionContextState",
+            "required": true
+          }
+        ],
+        "tags": [
+          "property-account-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/party/v1/accounts/changePasswordNotMe": {
+      "post": {
+        "summary": "Change the password of a user in Cognito",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "changePasswordNotMeUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/ChangePasswordNotMeRequest"
+            },
+            "in": "body",
+            "name": "changePasswordNotMeRequest",
+            "description": "changePasswordNotMeRequest",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "tags": [
+          "account-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/party/v1/properties/getSubscriptionContext": {
+      "get": {
+        "summary": "Get the context linked to current subscription",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "getPublicSubscriptionContextUsingGET",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/SubscriptionContext"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "header",
+            "name": "x-correlationId",
+            "description": "x-correlationId",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "property-account-resource"
+        ]
+      }
+    },
+    "/party/v1/properties/{cognitoId}/contract/{policyId}/proof": {
+      "get": {
+        "summary": "Get document contract proof",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "getContractProofByCognitoIdUsingGET",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cognitoId",
+            "description": "The cognito id for whom we should get the proof",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "policyId",
+            "description": "The policy number for whom we should get the proof",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "property-account-resource"
+        ]
+      }
+    },
+    "/public/party/v1/properties/{userId}/switchNoItsme": {
+      "post": {
+        "summary": "Switch insurance (sign document)",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "switchInsuranceNoItsmeUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/SwitchRequest"
+            },
+            "in": "body",
+            "name": "switchRequest",
+            "description": "switchRequest",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "description": "The user id (cognito id)",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "header",
+            "name": "x-language",
+            "x-example": "Fr",
+            "description": "x-language",
+            "type": "string",
+            "required": true,
+            "enum": [
+              "Fr",
+              "Nl",
+              "En",
+              "De"
+            ]
+          }
+        ],
+        "tags": [
+          "property-account-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/party/v1/properties/{cognitoId}/contract/{policyNumber}": {
+      "get": {
+        "summary": "Gets the summary of a user",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "getContractByCognitoIdUsingGET",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cognitoId",
+            "description": "The cognito id for whom we should get the summary",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "policyNumber",
+            "description": "The policy number for whom we should get the contract",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "tags": [
+          "property-account-resource"
+        ]
+      }
+    },
+    "/party/v1/properties/{cognitoId}/switchCallback": {
+      "post": {
+        "summary": "Switch insurance callback (sign document)",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "switchInsuranceCallbackUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cognitoId",
+            "description": "The user id (cognito id)",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/SwitchCallbackRequest"
+            },
+            "in": "body",
+            "name": "switchCallbackRequest",
+            "description": "switchCallbackRequest",
+            "required": true
+          }
+        ],
+        "tags": [
+          "property-account-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/party/v1/blacklists": {
+      "get": {
+        "summary": "Check if a account already exists in the database based on a mail address",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "verifyUsingGET",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/BlacklistResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "birthday",
+            "x-example": "20051995",
+            "description": "The birth date of the user",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "firstname",
+            "x-example": "Bruno",
+            "description": "The first name of the user",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "x-example": "Franki",
+            "description": "The name of the user",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "product",
+            "x-example": "PropertyRenter",
+            "description": "A user can be blacklisted against one or more products. The attribute allow filtering only on a specific product",
+            "type": "string",
+            "required": false,
+            "enum": [
+              "All",
+              "PropertyRenter"
+            ]
+          }
+        ],
+        "tags": [
+          "blacklist-resource"
+        ]
+      }
+    },
+    "/party/v1/accounts/{partyId}": {
+      "put": {
+        "summary": "Update the properties of an account",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "updateUsingPUT",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "partyId",
+            "description": "partyId",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/UpdateAccountRequest"
+            },
+            "in": "body",
+            "name": "updateAccountRequest",
+            "description": "updateAccountRequest",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-language",
+            "x-example": "Fr",
+            "description": "x-language",
+            "type": "string",
+            "required": true,
+            "enum": [
+              "Fr",
+              "Nl",
+              "En",
+              "De"
+            ]
+          }
+        ],
+        "tags": [
+          "account-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/party/v1/properties/blacklistedUserAcceptances": {
+      "post": {
+        "summary": "Accept a blacklisted RSR user",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "acceptBlacklistedUserUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/AcceptBlacklistedRequest"
+            },
+            "in": "body",
+            "name": "acceptBlacklistRequest",
+            "description": "acceptBlacklistRequest",
+            "required": true
+          }
+        ],
+        "tags": [
+          "property-account-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/party/v1/properties/getSubscriptionContext": {
+      "get": {
+        "summary": "Get the context linked to current subscription",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "getSubscriptionContextUsingGET",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/SubscriptionContext"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "header",
+            "name": "x-correlationId",
+            "description": "x-correlationId",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "property-account-resource"
+        ]
+      }
+    },
+    "/public/party/v1/properties/{userId}/switch": {
+      "post": {
+        "summary": "Switch insurance (sign document)",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "switchInsuranceUsingPOST",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/SwitchResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/SwitchRequest"
+            },
+            "in": "body",
+            "name": "switchRequest",
+            "description": "switchRequest",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "description": "The user id (cognito id)",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "tags": [
+          "property-account-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/party/v1/properties/{email}/contact": {
+      "patch": {
+        "summary": "Update a property account contact",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "updateContactUsingPATCH",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/PropertyAccount$Contact"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "description": "email",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/PropertyAccount$Contact"
+            },
+            "in": "body",
+            "name": "updateContactRequest",
+            "description": "updateContactRequest",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "tags": [
+          "property-account-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/party/v1/accounts/changeEmailNotMe": {
+      "post": {
+        "summary": "Cancel the change email of a user",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "changeEmailNotMeUsingPOST",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/ChangeEmailNotMeRequest"
+            },
+            "in": "body",
+            "name": "changeEmailNotMeRequest",
+            "description": "changeEmailNotMeRequest",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "tags": [
+          "account-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/public/party/v1/properties/emailQuote": {
+      "post": {
+        "summary": "Create an account with a minimum set of data and send a quote by mail",
+        "security": [
+          {
+            "apiKey": [
+              "global"
+            ]
+          }
+        ],
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "operationId": "emailQuoteUsingPOST",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/CreateAccountResponse"
+            },
+            "description": "OK"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Business error"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/JsonException"
+            },
+            "description": "Internal error"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/EmailQuoteRequest"
+            },
+            "in": "body",
+            "name": "emailQuoteRequest",
+            "description": "emailQuoteRequest",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "description": "x-api-key",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "header",
+            "name": "x-language",
+            "x-example": "Fr",
+            "description": "x-language",
+            "type": "string",
+            "required": true,
+            "enum": [
+              "Fr",
+              "Nl",
+              "En",
+              "De"
+            ]
+          }
+        ],
+        "tags": [
+          "property-account-resource"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    }
+  },
+  "host": "localhost:8080",
+  "securityDefinitions": {
+    "apiKey": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey"
+    }
+  },
+  "definitions": {
+    "ChangePasswordNotMeRequest": {
+      "type": "object",
+      "title": "ChangePasswordNotMeRequest",
+      "required": [
+        "key"
+      ],
+      "properties": {
+        "key": {
+          "description": "Unique key sent by mail to verify the owner",
+          "type": "string",
+          "example": "d0cffe4f-8a79-448a-91ff-b6480d707658"
+        }
+      }
+    },
+    "JsonException": {
+      "type": "object",
+      "title": "JsonException",
+      "required": [
+        "code",
+        "id",
+        "message"
+      ],
+      "properties": {
+        "trace": {
+          "description": "The stack trace of the JAVA exception. Currently not sent",
+          "type": "string"
+        },
+        "code": {
+          "description": "A code that identify the type of error. Can be used by a front end system to display an error message in the correct language",
+          "type": "string",
+          "example": "BSN_INVALID_AMOUNT"
+        },
+        "id": {
+          "description": "ID that identifies uniquely an error that occured. This value can be used in Kibana to find the call in error. This ID can be displayed to a end user",
+          "type": "string",
+          "example": "jZAfe!mP"
+        },
+        "message": {
+          "description": "A message that describes the error. This message is generic to not send critical data to a end user. The detail of the error is available in the logs",
+          "type": "string",
+          "example": "Business exception"
+        },
+        "params": {
+          "description": "This can be used by a front end system to display an error message with dynamic placeholder",
+          "type": "object",
+          "example": {
+            "some-key": "some-value"
+          }
+        }
+      }
+    },
+    "PriceDetails": {
+      "type": "object",
+      "title": "PriceDetails",
+      "properties": {
+        "priceNoTax": {
+          "format": "double",
+          "type": "number"
+        },
+        "priceWithTax": {
+          "format": "double",
+          "type": "number"
+        },
+        "taxAbt": {
+          "format": "double",
+          "type": "number"
+        },
+        "taxFdh": {
+          "format": "double",
+          "type": "number"
+        }
+      }
+    },
+    "AccountSummary": {
+      "type": "object",
+      "title": "AccountSummary",
+      "properties": {
+        "bankNumber": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/PropertyAccount$Contact$Address"
+        },
+        "paymentMean": {
+          "$ref": "#/definitions/AccountSummaryResponse$PaymentMean"
+        },
+        "policies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccountSummary$Policy"
+          }
+        },
+        "subscriptionState": {
+          "type": "string",
+          "enum": [
+            "QuoteCreated",
+            "QuoteAccepted",
+            "PendingEmailVerification",
+            "EmailVerified",
+            "Switch",
+            "SwitchNoItsme",
+            "SwitchSigned",
+            "PaymentDone"
+          ]
+        },
+        "nextPaymentMean": {
+          "$ref": "#/definitions/AccountSummaryResponse$PaymentMean"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "property": {
+          "$ref": "#/definitions/PropertyAccount$Property"
+        },
+        "partyId": {
+          "type": "string"
+        },
+        "card": {
+          "$ref": "#/definitions/AccountSummaryResponse$Card"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateStripeSubscriptionResponse": {
+      "type": "object",
+      "title": "CreateStripeSubscriptionResponse",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "completed",
+            "released",
+            "canceled",
+            "not_started",
+            "active"
+          ]
+        }
+      }
+    },
+    "PaypalSubscription": {
+      "type": "object",
+      "title": "PaypalSubscription",
+      "required": [
+        "contact"
+      ],
+      "properties": {
+        "contact": {
+          "description": "Subscription\u0027s contact information",
+          "$ref": "#/definitions/PaypalSubscription$Contact"
+        },
+        "policy": {
+          "description": "Information about new policy",
+          "$ref": "#/definitions/PaypalSubscription$Policy"
+        }
+      }
+    },
+    "SwitchRequest": {
+      "type": "object",
+      "title": "SwitchRequest",
+      "required": [
+        "insuranceName",
+        "policyEndDate"
+      ],
+      "properties": {
+        "policyNumber": {
+          "description": "The user\u0027s current insurance policy number",
+          "type": "string",
+          "example": "A-124567-PR"
+        },
+        "insuranceName": {
+          "description": "The name of the insurance with which the user is currently insured. Must be an insurance that has an agreement with Ethias",
+          "type": "string",
+          "example": "Axa"
+        },
+        "policyEndDate": {
+          "format": "date-time",
+          "description": "The user\u0027s current insurance policy end date",
+          "type": "string",
+          "example": "01/06/2020"
+        }
+      }
+    },
+    "PropertyAccount$Cancellation": {
+      "type": "object",
+      "title": "PropertyAccount$Cancellation",
+      "required": [
+        "companyName",
+        "contractNumber",
+        "dueDate"
+      ],
+      "properties": {
+        "companyName": {
+          "description": "Compagny name",
+          "type": "string",
+          "example": "Ethias SA"
+        },
+        "dueDate": {
+          "description": "Contract end date (dd/MM/yyyy)",
+          "type": "string",
+          "example": "01/02/2020"
+        },
+        "contractNumber": {
+          "description": "Contract number",
+          "type": "string",
+          "example": 12545225
+        }
+      }
+    },
+    "CreatePaypalSubscriptionResponse": {
+      "type": "object",
+      "title": "CreatePaypalSubscriptionResponse",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "urlToSubscribe": {
+          "type": "string"
+        }
+      }
+    },
+    "ValidateQuoteEmailRequest": {
+      "type": "object",
+      "title": "ValidateQuoteEmailRequest",
+      "required": [
+        "key",
+        "nonce",
+        "quoteId"
+      ],
+      "properties": {
+        "nonce": {
+          "description": "A random string sent by mail to verify the email address",
+          "type": "string",
+          "example": "A15w6fj"
+        },
+        "key": {
+          "description": "Unique key sent by mail to verify the email address",
+          "type": "string",
+          "example": "d0cffe4f-8a79-448a-91ff-b6480d707658"
+        },
+        "quoteId": {
+          "description": "The quote ID correspoding to the quote received by mail",
+          "type": "string",
+          "example": "df2c4d44-823c-4a7b-8149-d802c68e7147"
+        }
+      }
+    },
+    "BlacklistResponse": {
+      "type": "object",
+      "title": "BlacklistResponse",
+      "required": [
+        "blacklisted"
+      ],
+      "properties": {
+        "reason": {
+          "description": "The reason why the user is blacklisted",
+          "type": "string",
+          "enum": [
+            "ProvenFraud",
+            "HighSinistrality",
+            "BadPayer"
+          ],
+          "example": "ProvenFraud"
+        },
+        "blacklisted": {
+          "description": "A flag that indicates if the user is blacklisted or not",
+          "type": "boolean",
+          "example": true
+        },
+        "nbClaim": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "claimDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "nbResponsableClaim": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "ValidateAccountRequest": {
+      "type": "object",
+      "title": "ValidateAccountRequest",
+      "required": [
+        "key",
+        "nonce"
+      ],
+      "properties": {
+        "nonce": {
+          "description": "A random string sent by mail to verify the email address",
+          "type": "string",
+          "example": "A15w6fj"
+        },
+        "key": {
+          "description": "Unique key sent by mail to verify the email address",
+          "type": "string",
+          "example": "d0cffe4f-8a79-448a-91ff-b6480d707658"
+        }
+      }
+    },
+    "AccountSummaryResponse$Policy$Coverage": {
+      "type": "object",
+      "title": "AccountSummaryResponse$Policy$Coverage",
+      "properties": {
+        "premiumAmount": {
+          "format": "double",
+          "type": "number"
+        },
+        "coverageName": {
+          "type": "string"
+        },
+        "createdDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "deductibleAmount": {
+          "format": "double",
+          "type": "number"
+        },
+        "limitAmount": {
+          "format": "double",
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "discount": {
+          "format": "double",
+          "type": "number"
+        },
+        "limitPercentage": {
+          "format": "double",
+          "type": "number"
+        },
+        "id": {
+          "type": "string"
+        },
+        "effectiveDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "ChangeEmailRequest": {
+      "type": "object",
+      "title": "ChangeEmailRequest",
+      "required": [
+        "key"
+      ],
+      "properties": {
+        "origin": {
+          "description": "The origin of the call (web or mobile)\u003cbr/\u003eIf the origin is from the web, one needs to send a notification to the mobile app to logout the user\u003cbr/\u003e\u003cbr/\u003eDefaults to: mobile",
+          "type": "string",
+          "enum": [
+            "web",
+            "mobile"
+          ],
+          "example": "web"
+        },
+        "key": {
+          "description": "A unique key sent by mail. This key is the primary key in DynamoDB",
+          "type": "string",
+          "example": "852f82e7-d9fd-49e0-b3bf-1aa826befc3a"
+        }
+      }
+    },
+    "SubscriptionContext": {
+      "type": "object",
+      "title": "SubscriptionContext",
+      "required": [
+        "currentInsurance",
+        "quoteExpired",
+        "quoteId"
+      ],
+      "properties": {
+        "quoteExpired": {
+          "description": "Flag to indicate if the quote is still valid",
+          "type": "boolean",
+          "example": false
+        },
+        "contact": {
+          "description": "Account contact\u0027s information",
+          "$ref": "#/definitions/PropertyAccount$Contact"
+        },
+        "property": {
+          "description": "Contact\u0027s property information",
+          "$ref": "#/definitions/PropertyAccount$Property"
+        },
+        "state": {
+          "description": "The step where the user stopped",
+          "type": "string",
+          "enum": [
+            "QuoteByMail",
+            "Created",
+            "Validated",
+            "Switch",
+            "SwitchNoItsme",
+            "SwitchSigned",
+            "PaymentDone"
+          ],
+          "example": "SwithNoItsme"
+        },
+        "currentInsurance": {
+          "description": "The actual client\u0027s insurance",
+          "$ref": "#/definitions/Subscription$CurrentInsurance"
+        },
+        "quoteId": {
+          "description": "The active quote ID linked to the subscription",
+          "type": "string",
+          "example": "df2c4d44-823c-4a7b-8149-d802c68e7147"
+        }
+      }
+    },
+    "CreateAccountResponse": {
+      "type": "object",
+      "title": "CreateAccountResponse",
+      "required": [
+        "correlationId",
+        "emailExist"
+      ],
+      "properties": {
+        "isValidatedEmail": {
+          "description": "Check if account is confirmed in cognito",
+          "type": "boolean",
+          "example": true
+        },
+        "hasContract": {
+          "description": "Check if a policy exist in salesforce",
+          "type": "boolean",
+          "example": true
+        },
+        "emailExist": {
+          "description": "Check if email exist in cognito",
+          "type": "boolean",
+          "example": true
+        },
+        "correlationId": {
+          "description": "Unique ID to use in requests to change email or resend email",
+          "type": "string",
+          "example": "0ccab3ae-98e6-4fb5-8547-a49ee326ca18"
+        },
+        "validation": {
+          "description": "check if blacklisted or not",
+          "type": "string",
+          "enum": [
+            "accepted",
+            "pending",
+            "refused"
+          ],
+          "example": "pending"
+        }
+      }
+    },
+    "ChangeEmailNotMeRequest": {
+      "type": "object",
+      "title": "ChangeEmailNotMeRequest",
+      "required": [
+        "key"
+      ],
+      "properties": {
+        "key": {
+          "description": "A unique key sent by mail. This key is the primary key in DynamoDB",
+          "type": "string",
+          "example": "852f82e7-d9fd-49e0-b3bf-1aa826befc3a"
+        }
+      }
+    },
+    "SwitchResponse": {
+      "type": "object",
+      "title": "SwitchResponse",
+      "required": [
+        "signUrl"
+      ],
+      "properties": {
+        "signUrl": {
+          "description": "The URL to sign the document",
+          "type": "string",
+          "example": "https://ethias-accept.connective.eu/signinit?packageSignId\u003d98e25d10-ab18-44b9-aa5a-a9aa92d8dd25"
+        }
+      }
+    },
+    "FloodResponse": {
+      "type": "object",
+      "title": "FloodResponse",
+      "properties": {
+        "s3FloodInfoId": {
+          "description": "s3FloodId",
+          "type": "string",
+          "example": "0e4ee812-aa1e-4de0-9739-4323b4fda144"
+        },
+        "rockestateResponse": {
+          "description": "rockestateResponse",
+          "type": "string",
+          "example": {}
+        }
+      }
+    },
+    "AccountSummaryResponse$Policy$CustomerProperty$Address": {
+      "type": "object",
+      "title": "AccountSummaryResponse$Policy$CustomerProperty$Address",
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "latitude": {
+          "format": "double",
+          "type": "number"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "longitude": {
+          "format": "double",
+          "type": "number"
+        }
+      }
+    },
+    "PropertyAccount": {
+      "type": "object",
+      "title": "PropertyAccount",
+      "properties": {
+        "referrer": {
+          "description": "The referer who brought the new client. This represents the external ID of the business provider in Salesfroce",
+          "type": "string",
+          "example": 123465
+        },
+        "cancellation": {
+          "description": "Information about existing policy",
+          "$ref": "#/definitions/PropertyAccount$Cancellation"
+        },
+        "contact": {
+          "description": "Account contact\u0027s information",
+          "$ref": "#/definitions/PropertyAccount$Contact"
+        },
+        "property": {
+          "description": "Contact\u0027s property information",
+          "$ref": "#/definitions/PropertyAccount$Property"
+        },
+        "quoteId": {
+          "description": "Use last accepted quote by customer",
+          "type": "string",
+          "example": true
+        },
+        "policy": {
+          "description": "Information about possible new policy",
+          "$ref": "#/definitions/PropertyAccount$Policy"
+        }
+      }
+    },
+    "ResendEmailRequest": {
+      "type": "object",
+      "title": "ResendEmailRequest",
+      "required": [
+        "email"
+      ],
+      "properties": {
+        "email": {
+          "description": "The recipient email address",
+          "type": "string",
+          "example": "bruno.franki@nrb.be"
+        }
+      }
+    },
+    "PropertyAccount$Contact$Address": {
+      "type": "object",
+      "title": "PropertyAccount$Contact$Address",
+      "required": [
+        "city",
+        "countryCode",
+        "postalCode",
+        "streetName",
+        "streetNumber"
+      ],
+      "properties": {
+        "streetName": {
+          "description": "Street name",
+          "type": "string",
+          "example": "Rue reine astrid"
+        },
+        "streetNumber": {
+          "description": "Street number",
+          "type": "string",
+          "example": 182
+        },
+        "city": {
+          "description": "City name",
+          "type": "string",
+          "example": "Engis"
+        },
+        "countryCode": {
+          "description": "Country code",
+          "type": "string",
+          "example": "BE"
+        },
+        "postalCode": {
+          "description": "Postal code",
+          "type": "string",
+          "example": "4480"
+        },
+        "box": {
+          "description": "House box number",
+          "type": "string",
+          "example": "B"
+        }
+      }
+    },
+    "EmailQuoteRequest$Contact": {
+      "type": "object",
+      "title": "EmailQuoteRequest$Contact",
+      "required": [
+        "address",
+        "email"
+      ],
+      "properties": {
+        "address": {
+          "description": "Contact address",
+          "$ref": "#/definitions/PropertyAccount$Contact$Address"
+        },
+        "email": {
+          "description": "Contact email",
+          "type": "string",
+          "example": "florian.rabeux@nrb.be"
+        }
+      }
+    },
+    "PropertyAccount$Property": {
+      "type": "object",
+      "title": "PropertyAccount$Property",
+      "required": [
+        "rent",
+        "type"
+      ],
+      "properties": {
+        "s3FloodId": {
+          "description": "Document id store in S3 containing rockestate info",
+          "type": "string",
+          "example": "8ada4f29-4f6e-4c05-8de5-806e0593fb6f"
+        },
+        "groundFloor": {
+          "description": "Flag to indicate if the appartment is located on the ground floor or not",
+          "type": "boolean",
+          "example": true
+        },
+        "type": {
+          "description": "Type of property",
+          "type": "string",
+          "enum": [
+            "Apartment",
+            "House",
+            "Villa"
+          ],
+          "example": "House"
+        },
+        "rent": {
+          "format": "double",
+          "description": "House rent",
+          "type": "number",
+          "example": 710
+        }
+      }
+    },
+    "EmailQuoteRequest": {
+      "type": "object",
+      "title": "EmailQuoteRequest",
+      "properties": {
+        "referrer": {
+          "description": "The referer who brought the new client. This represents the external ID of the business provider in Salesfroce",
+          "type": "string",
+          "example": 123465
+        },
+        "contact": {
+          "description": "Account contact\u0027s information",
+          "$ref": "#/definitions/EmailQuoteRequest$Contact"
+        },
+        "property": {
+          "description": "Contact\u0027s property information",
+          "$ref": "#/definitions/PropertyAccount$Property"
+        },
+        "policy": {
+          "description": "Information about possible new policy",
+          "$ref": "#/definitions/PropertyAccount$Policy"
+        }
+      }
+    },
+    "SwitchCallbackRequest$SwitchContext": {
+      "type": "object",
+      "title": "SwitchCallbackRequest$SwitchContext",
+      "properties": {
+        "cognitoId": {
+          "type": "string"
+        },
+        "policyNumber": {
+          "type": "string"
+        },
+        "policyEndDate": {
+          "type": "string"
+        },
+        "insurerName": {
+          "type": "string"
+        }
+      }
+    },
+    "StripeSubscription": {
+      "type": "object",
+      "title": "StripeSubscription",
+      "required": [
+        "contact"
+      ],
+      "properties": {
+        "contact": {
+          "description": "Subscription\u0027s contact information",
+          "$ref": "#/definitions/StripeSubscription$Contact"
+        },
+        "policy": {
+          "description": "Information about new policy",
+          "$ref": "#/definitions/StripeSubscription$Policy"
+        }
+      }
+    },
+    "AccountSummaryResponse$PaymentMean": {
+      "type": "object",
+      "title": "AccountSummaryResponse$PaymentMean",
+      "properties": {
+        "bankNumber": {
+          "type": "string"
+        },
+        "organism": {
+          "type": "string"
+        },
+        "refundBankNumber": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "last4Digits": {
+          "type": "string"
+        }
+      }
+    },
+    "Options": {
+      "type": "object",
+      "title": "Options",
+      "properties": {
+        "price": {
+          "format": "double",
+          "type": "number"
+        },
+        "priceDetails": {
+          "$ref": "#/definitions/PriceDetails"
+        },
+        "id": {
+          "type": "string",
+          "enum": [
+            "TheftAndVandalism"
+          ]
+        }
+      }
+    },
+    "UpdateAccountRequest": {
+      "type": "object",
+      "title": "UpdateAccountRequest",
+      "properties": {
+        "bankNumber": {
+          "description": "If the field is present and different that the current bank number, salesforce are updated",
+          "type": "string",
+          "example": "BE71096123456769"
+        },
+        "phoneNumber": {
+          "description": "If the field is present and different that the current phone number, cognito and salesforce are updated",
+          "type": "string",
+          "example": "0032471771600"
+        },
+        "firebaseToken": {
+          "description": "If the field is present put it in cognito",
+          "type": "string",
+          "example": "BE71096123456769"
+        },
+        "email": {
+          "description": "If the field is present and different that the current email address, a mail is sent to confirm this new email address",
+          "type": "string",
+          "example": "bruno.franki@nrb"
+        }
+      }
+    },
+    "PaypalSubscription$Contact": {
+      "type": "object",
+      "title": "PaypalSubscription$Contact",
+      "properties": {
+        "paymentCurrency": {
+          "description": "Currency of payment",
+          "type": "string",
+          "enum": [
+            "eur"
+          ],
+          "example": "eur"
+        }
+      }
+    },
+    "UpdateSubscriptionContextState": {
+      "type": "object",
+      "title": "UpdateSubscriptionContextState",
+      "required": [
+        "state"
+      ],
+      "properties": {
+        "state": {
+          "description": "Subscription context",
+          "type": "string",
+          "enum": [
+            "QuoteCreated",
+            "QuoteAccepted",
+            "PendingEmailVerification",
+            "EmailVerified",
+            "Switch",
+            "SwitchNoItsme",
+            "SwitchSigned",
+            "PaymentDone"
+          ],
+          "example": "QuoteByMail"
+        }
+      }
+    },
+    "ChangePasswordRequest": {
+      "type": "object",
+      "title": "ChangePasswordRequest",
+      "required": [
+        "key",
+        "password"
+      ],
+      "properties": {
+        "password": {
+          "description": "The new password",
+          "type": "string",
+          "example": "Test123!"
+        },
+        "key": {
+          "description": "Unique key sent by mail to verify the owner",
+          "type": "string",
+          "example": "d0cffe4f-8a79-448a-91ff-b6480d707658"
+        }
+      }
+    },
+    "StripeSubscription$Contact": {
+      "type": "object",
+      "title": "StripeSubscription$Contact",
+      "required": [
+        "paymentMethod"
+      ],
+      "properties": {
+        "paymentMethod": {
+          "description": "Info about paiement (card linked to a user)",
+          "type": "string",
+          "example": "pm_1112113211313131"
+        },
+        "paymentCurrency": {
+          "description": "Currency of payment",
+          "type": "string",
+          "enum": [
+            "eur"
+          ],
+          "example": "eur"
+        }
+      }
+    },
+    "EmailExistResponse": {
+      "type": "object",
+      "title": "EmailExistResponse",
+      "required": [
+        "exist"
+      ],
+      "properties": {
+        "exist": {
+          "description": "A flag that indicates if the account exists or not in the database",
+          "type": "boolean",
+          "example": false
+        }
+      }
+    },
+    "ResetPasswordRequest": {
+      "type": "object",
+      "title": "ResetPasswordRequest",
+      "required": [
+        "email"
+      ],
+      "properties": {
+        "email": {
+          "description": "The recipient email address",
+          "type": "string",
+          "example": "bruno.franki@nrb.be"
+        }
+      }
+    },
+    "PropertyAccount$Policy": {
+      "type": "object",
+      "title": "PropertyAccount$Policy",
+      "required": [
+        "startDate"
+      ],
+      "properties": {
+        "options": {
+          "description": "Selected quote options",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "TheftAndVandalism"
+            ]
+          },
+          "example": [
+            "TheftAndVandalism"
+          ]
+        },
+        "startDate": {
+          "description": "Contract start date (dd/MM/yyyy)",
+          "type": "string",
+          "example": "01/02/2020"
+        }
+      }
+    },
+    "Pricing": {
+      "type": "object",
+      "title": "Pricing",
+      "properties": {
+        "perils": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Peril"
+          }
+        },
+        "maxCoverage": {
+          "format": "double",
+          "type": "number"
+        },
+        "price": {
+          "format": "double",
+          "type": "number"
+        },
+        "occurance": {
+          "type": "string",
+          "enum": [
+            "Daily",
+            "Monthly",
+            "Weekly",
+            "Yearly"
+          ]
+        }
+      }
+    },
+    "AcceptBlacklistedRequest": {
+      "type": "object",
+      "title": "AcceptBlacklistedRequest",
+      "required": [
+        "accepted",
+        "userId"
+      ],
+      "properties": {
+        "accepted": {
+          "description": "A flag to indicate if the user is accepted or should be considered as blacklisted",
+          "type": "boolean",
+          "example": true
+        },
+        "userId": {
+          "description": "The internal id of the user (cognito ID)",
+          "type": "string",
+          "example": "e7a49cee-1990-4204-9624-d6a585a8f666"
+        }
+      }
+    },
+    "Health": {
+      "type": "object",
+      "title": "Health",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "OK",
+            "NOK"
+          ]
+        }
+      }
+    },
+    "AccountSummaryResponse$Card": {
+      "type": "object",
+      "title": "AccountSummaryResponse$Card",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "last4Digits": {
+          "type": "string"
+        }
+      }
+    },
+    "AccountPublic": {
+      "type": "object",
+      "title": "AccountPublic",
+      "required": [
+        "address",
+        "email",
+        "property"
+      ],
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/PropertyAccount$Contact$Address"
+        },
+        "property": {
+          "$ref": "#/definitions/PropertyAccount$Property"
+        },
+        "email": {
+          "description": "email",
+          "type": "string",
+          "example": "luigi.abiuso@nrb.be"
+        }
+      }
+    },
+    "PaypalSubscription$Policy": {
+      "type": "object",
+      "title": "PaypalSubscription$Policy",
+      "properties": {
+        "startDate": {
+          "description": "Billing start date (dd/MM/yyyy)",
+          "type": "string",
+          "example": "01/02/2020"
+        }
+      }
+    },
+    "AccountSummaryResponse$Policy$CustomerProperty": {
+      "type": "object",
+      "title": "AccountSummaryResponse$Policy$CustomerProperty",
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/AccountSummaryResponse$Policy$CustomerProperty$Address"
+        },
+        "createdDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "propertyType": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "PropertyAccount$Contact": {
+      "type": "object",
+      "title": "PropertyAccount$Contact",
+      "required": [
+        "address",
+        "birthDate",
+        "email",
+        "firstname",
+        "name",
+        "password",
+        "phoneNumber"
+      ],
+      "properties": {
+        "firstname": {
+          "description": "Contact firstame",
+          "type": "string",
+          "example": "Rabeux"
+        },
+        "password": {
+          "description": "Contact password",
+          "type": "string",
+          "example": "Florian123!"
+        },
+        "phoneNumber": {
+          "description": "Contact phone number",
+          "type": "string",
+          "example": "0475212121"
+        },
+        "address": {
+          "description": "Contact address",
+          "$ref": "#/definitions/PropertyAccount$Contact$Address"
+        },
+        "name": {
+          "description": "Contact name",
+          "type": "string",
+          "example": "Rabeux"
+        },
+        "birthDate": {
+          "description": "Contact birthdate (dd/MM/yyyy)",
+          "type": "string",
+          "example": "01/02/2020"
+        },
+        "email": {
+          "description": "Contact email",
+          "type": "string",
+          "example": "florian.rabeux@nrb.be"
+        },
+        "marketingOptin": {
+          "description": "Flag to indicate if the user agrees to be contacted for marketing purposes",
+          "type": "boolean",
+          "example": true
+        }
+      }
+    },
+    "StripeSubscription$Policy": {
+      "type": "object",
+      "title": "StripeSubscription$Policy",
+      "properties": {
+        "startDate": {
+          "description": "Billing start date (dd/MM/yyyy)",
+          "type": "string",
+          "example": "01/02/2020"
+        }
+      }
+    },
+    "AccountSummary$Policy": {
+      "type": "object",
+      "title": "AccountSummary$Policy",
+      "properties": {
+        "endDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "suspensionDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "showSuspendedBanner": {
+          "type": "boolean"
+        },
+        "saleDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "coverages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccountSummaryResponse$Policy$Coverage"
+          }
+        },
+        "accountId": {
+          "type": "string"
+        },
+        "insuredProperty": {
+          "$ref": "#/definitions/AccountSummaryResponse$Policy$CustomerProperty"
+        },
+        "name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "effectiveDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "cancellationDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "expirationDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "CognitoAccount": {
+      "type": "object",
+      "title": "CognitoAccount",
+      "required": [
+        "email",
+        "firstname",
+        "name",
+        "partyId",
+        "preferredUsername"
+      ],
+      "properties": {
+        "firstname": {
+          "description": "Party firstname",
+          "type": "string",
+          "example": "florian."
+        },
+        "preferredUsername": {
+          "description": "Party id, unique identifier",
+          "type": "string",
+          "example": "20200622-0001"
+        },
+        "name": {
+          "description": "Party name",
+          "type": "string",
+          "example": "rabeux"
+        },
+        "partyId": {
+          "description": "Party id, unique identifier",
+          "type": "string",
+          "example": "d0cffe4f-8a79-448a-91ff-b6480d707658"
+        },
+        "email": {
+          "description": "Party email",
+          "type": "string",
+          "example": "florian.rabeux@nrb.com"
+        }
+      }
+    },
+    "GetMyQuoteResponse": {
+      "type": "object",
+      "title": "GetMyQuoteResponse",
+      "properties": {
+        "abexStartDate": {
+          "type": "string"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Options"
+          }
+        },
+        "abex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "risk": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isNewQuote": {
+          "type": "boolean"
+        },
+        "pricing": {
+          "$ref": "#/definitions/Pricing"
+        },
+        "quoteId": {
+          "type": "string"
+        }
+      }
+    },
+    "Peril": {
+      "type": "object",
+      "title": "Peril",
+      "properties": {
+        "priceDetails": {
+          "$ref": "#/definitions/PriceDetails"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Fire",
+            "PJ",
+            "Theft",
+            "Storm",
+            "Disaster",
+            "Attack"
+          ]
+        }
+      }
+    },
+    "SwitchCallbackRequest": {
+      "type": "object",
+      "title": "SwitchCallbackRequest",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "packageId": {
+          "description": "The packageId that can be used to retrieve the document from Connective",
+          "type": "string",
+          "example": "ade000d0-e72e-450c-b4b2-a1da91a0242b"
+        },
+        "context": {
+          "description": "The context that was sent to DMS service in the generateAndSign request",
+          "$ref": "#/definitions/SwitchCallbackRequest$SwitchContext"
+        },
+        "documentId": {
+          "description": "The documentId that can be used to retrieve the document from Connective",
+          "type": "string",
+          "example": "466877d0-e72e-450c-b4b2-a1da91a0242b"
+        },
+        "status": {
+          "description": "The status returned by Connective",
+          "type": "string",
+          "enum": [
+            "Draft",
+            "Pending",
+            "Finished",
+            "Rejected",
+            "Revoked",
+            "Expired",
+            "Failed"
+          ],
+          "example": "Finished"
+        }
+      }
+    },
+    "Subscription$CurrentInsurance": {
+      "type": "object",
+      "title": "Subscription$CurrentInsurance",
+      "properties": {
+        "policyNumber": {
+          "type": "string"
+        },
+        "insuranceName": {
+          "type": "string"
+        },
+        "policyEndDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    }
+  },
+  "swagger": "2.0",
+  "info": {
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    },
+    "contact": {},
+    "description": "Api Documentation",
+    "termsOfService": "urn:tos",
+    "title": "Api Documentation",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "account-resource",
+      "description": "Account Resource"
+    },
+    {
+      "name": "blacklist-resource",
+      "description": "Blacklist Resource"
+    },
+    {
+      "name": "health-resource",
+      "description": "Health Resource"
+    },
+    {
+      "name": "paypal-resource",
+      "description": "Paypal Resource"
+    },
+    {
+      "name": "property-account-resource",
+      "description": "Property Account Resource"
+    },
+    {
+      "name": "property-resource",
+      "description": "Property Resource"
+    },
+    {
+      "name": "scheduler-resource",
+      "description": "Scheduler Resource"
+    },
+    {
+      "name": "stripe-resource",
+      "description": "Stripe Resource"
+    },
+    {
+      "name": "summary-resource",
+      "description": "Summary Resource"
+    }
+  ]
+}

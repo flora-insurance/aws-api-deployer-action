@@ -8,7 +8,7 @@ const deploy = require('./lib/deploy');
 
 async function run() {
   try { 
-    const swaggerPath = core.getInput('swagger-path') || `${process.cwd()}/swagger.json`;
+    const swaggerPath = core.getInput('swagger-path') || `${process.cwd()}/test.swagger.json`;
     const apiName = core.getInput('api-name') || 'Test githubaction API v1';
     const region = core.getInput('aws-region') || 'eu-west-1';
     const basePath = core.getInput('api-base-path') || 'test1-exp-v1';
