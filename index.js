@@ -7,7 +7,7 @@ const ApiMerger = require('./lib/api-merger');
 const deploy = require('./lib/deploy');
 
 async function run() {
-  try { 
+  try {
     const swaggerPath = core.getInput('swagger-path') || `${process.cwd()}/test.swagger.json`;
     const apiName = core.getInput('api-name') || 'Test githubaction API v1';
     const region = core.getInput('aws-region') || 'eu-west-1';
@@ -15,18 +15,18 @@ async function run() {
     const domainName = core.getInput('api-domain-name') || 'internal.api.dev.flora.insure';
     const mediaTypes = core.getInput('api-media-types').split("\n") || [];
     const additionalHeaders = core.getInput('api-additional-headers') || '';
-    
-    AWS.config.update({ region }); 
+
+    AWS.config.update({ region });
 
     const apiGtw = new ApiGtw();
     let importedApi;
 
     const localSwagger = JSON.parse(fs.readFileSync(swaggerPath));
-    
+
     importedApi = await deploy({ localSwagger, apiName, basePath, mediaTypes, additionalHeaders });
 
     console.log("================== Imported API", JSON.stringify(importedApi, null, 2));
-    
+
     // Deploy the API on default stage
     const deployedApi = await apiGtw.createDeployment(importedApi.id, importedApi.description, "default", "Default");
     console.log("================== Deployed API", JSON.stringify(deployedApi, null, 2));
@@ -46,7 +46,7 @@ async function run() {
     }
 
     console.log("================== basePathMapping", JSON.stringify(basePathMapping, null, 2));
-  } 
+  }
   catch (error) {
     core.setFailed(error.message);
   }
